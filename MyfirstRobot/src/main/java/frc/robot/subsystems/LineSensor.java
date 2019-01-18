@@ -21,8 +21,20 @@ public class LineSensor {
         input = new AnalogInput(port);
     }
 
-    public double getValue()
+    public double getAverageVoltage()
     {
         return input.getAverageVoltage();
+    }
+    public double getRawAverageValue()
+    {
+        return input.getAverageValue();
+    }
+    public double getNumberOfBits()
+    {
+        return input.getAverageBits();
+    }
+    public boolean onTape()
+    {
+        return getAverageVoltage() > 5;
     }
 }
