@@ -37,4 +37,9 @@ public class LineSensor {
     {
         return getAverageVoltage() > 5;
     }
+
+    public int getPort()
+    {
+        return port;
+    }
 }
