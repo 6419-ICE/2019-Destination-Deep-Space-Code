@@ -10,7 +10,8 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.AnalogInput;
 
 /**
- * Add your docs here.
+ * LineSensor
+ * 
  */
 public class LineSensor {
     private AnalogInput input;
