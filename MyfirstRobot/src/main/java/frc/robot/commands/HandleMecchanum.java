@@ -7,20 +7,13 @@
 
 package frc.robot.commands;
 
-
-import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class TurnDegrees extends Command {
-  private Timer time;
-  private int counter;
-  private double timeout;
-  private double setpoint;
-  public TurnDegrees(double degrees, double timeout) {
-    requires(Robot.chassis);
-    this.setpoint = degrees;
-    this.timeout = timeout;
+public class HandleMecchanum extends Command {
+  public HandleMecchanum() {
+    requires(Robot.mChassis);
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -28,35 +21,28 @@ public class TurnDegrees extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    time = new Timer();
-    counter = 0;
-    Robot.chassis.startTurnPid(setpoint);
-    time.start();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(Robot.chassis.turnPid.onTarget())
-    {
-      counter++;
-    }
-    else{
-      counter = 0;
-    }
+    Joystick j = Robot.m_oi.joystick1;
+   double x = j.getRawAxis(0);
+    double y = j.getRawAxis(1);
+    double z = j.getRawAxis(2);
+    Robot.mChassis.drive(x, y, z);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-
-    return (counter > 2 && Robot.chassis.turnPid.onTarget()) || time.get() > this.timeout;
+    return false;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.chassis.drive(0, 0);
+  Robot.mChassis.drive(0,0,0);
   }
 
   // Called when another command which requires one or more of the same

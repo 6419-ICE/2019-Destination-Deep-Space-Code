@@ -20,8 +20,7 @@ import frc.robot.commands.HandleDrive;
 /**
  * Add your docs here.
  */
-public class Chassis extends Subsystem implements PIDOutput {
-  private LineSensor lineSensor;
+public class MecchanumChassis extends Subsystem implements PIDOutput {
   private Talon flDrive, frDrive, blDrive, brDrive;
   public static double kP = 1, kI = 0, kD = 0, kF = 0;
   public static double percentTolerance = 5f;
@@ -31,15 +30,13 @@ public class Chassis extends Subsystem implements PIDOutput {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  public Chassis() {
+  public MecchanumChassis() {
     gyro = new ADXRS450_Gyro();
-    lineSensor = new LineSensor(RobotMap.LINE_SENSOR);
     flDrive = new Talon(RobotMap.FRONT_LEFT_DRIVE);
     frDrive = new Talon(RobotMap.FRONT_RIGHT_DRIVE);
     blDrive = new Talon(RobotMap.BACK_LEFT_DRIVE);
     brDrive = new Talon(RobotMap.BACK_RIGHT_DRIVE);
     turnPid = new PIDController(0, 0, 0, gyro, this);
-    setPid();
     // TODO Set the direction of the motors to make driving have positive output
     // going straight.
   }
@@ -63,7 +60,6 @@ public class Chassis extends Subsystem implements PIDOutput {
   }
 
   public void startTurnPid(double setpoint) {
-    setPid();
     turnPid.setSetpoint(setpoint);
     turnPid.enable();
   }
@@ -71,16 +67,21 @@ public class Chassis extends Subsystem implements PIDOutput {
   /**
    * Drives the robot using raw power.
    */
-  public void drive(double left, double right) {
-    flDrive.set(left);
-    frDrive.set(right);
-    blDrive.set(left);
-    brDrive.set(right);
+  public void drive(double x, double y, double z) {
+    double flPower = 0, frPower = 0, blPower = 0, brPower = 0;
+    flPower = y - x + z;
+    frPower = y + x - z;
+    blPower = y + x + z;
+    brPower = y -x -z;
+    flDrive.set(flPower);
+    frDrive.set(frPower);
+    blDrive.set(blPower);
+    brDrive.set(brPower);
   }
 
   @Override
   public void pidWrite(double output) {
-    drive(output, -output);
+    drive(0, 0, output);
   }
 
 }

@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.Chassis;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.MecchanumChassis;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -27,6 +28,7 @@ public class Robot extends TimedRobot {
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static OI m_oi;
   public static Chassis chassis;
+  public static MecchanumChassis mChassis;
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -38,9 +40,12 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     m_oi = new OI();
     chassis = new Chassis();
+    mChassis = new MecchanumChassis();
     m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
+    
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
+  
   }
 
   /**
