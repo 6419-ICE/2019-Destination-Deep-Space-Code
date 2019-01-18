@@ -16,12 +16,13 @@ import edu.wpi.first.wpilibj.Joystick.AxisType;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.commands.HandleDrive;
+import frc.robot.*;
 
 /**
  * Add your docs here.
  */
 public class Chassis extends Subsystem implements PIDOutput {
-  private LineSensor lineSensor;
+  private LineSensor lineSensorLeft, lineSensorRight, lineSensorCenter;
   private Talon flDrive, frDrive, blDrive, brDrive;
   public static double kP = 1, kI = 0, kD = 0, kF = 0;
   public static double percentTolerance = 5f;
@@ -33,7 +34,9 @@ public class Chassis extends Subsystem implements PIDOutput {
 
   public Chassis() {
     gyro = new ADXRS450_Gyro();
-    lineSensor = new LineSensor(RobotMap.LINE_SENSOR);
+    lineSensorLeft = new LineSensor(RobotMap.LINE_SENSOR1);
+    lineSensorCenter = new LineSensor(RobotMap.LINE_SENSOR2);
+    lineSensorRight = new LineSensor(RobotMap.LINE_SENSOR3);
     flDrive = new Talon(RobotMap.FRONT_LEFT_DRIVE);
     frDrive = new Talon(RobotMap.FRONT_RIGHT_DRIVE);
     blDrive = new Talon(RobotMap.BACK_LEFT_DRIVE);
@@ -82,5 +85,39 @@ public class Chassis extends Subsystem implements PIDOutput {
   public void pidWrite(double output) {
     drive(output, -output);
   }
+  public boolean getLeft()
+  {
+    return lineSensorLeft.onTape();
+  }
+  public boolean getCenter()
+  {
+    return lineSensorCenter.onTape();
+  }
+  public boolean getRight()
+  {
+    return lineSensorRight.onTape();
+  }
+  public DirectionEnum directionToTurn()
+  {
+    boolean left = getLeft();
+    boolean center = getCenter();
+    boolean right = getRight();
+    if(left && center && ! right)
+    {
+      return DirectionEnum.LEFT;
+    }
+    if(right && center && !left)
+    {
+      return DirectionEnum.RIGHT;
+    }
+    if(!left && center && !right)
+    {
+      return DirectionEnum.CENTER;
+    }
+    return DirectionEnum.UNKNOWN;
+
+  }
+  
+
 
 }
