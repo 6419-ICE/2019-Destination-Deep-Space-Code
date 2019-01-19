@@ -16,6 +16,7 @@ import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.Chassis;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.MecchanumChassis;
+import frc.robot.subsystems.VacuumIntake;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -29,6 +30,7 @@ public class Robot extends TimedRobot {
   public static OI m_oi;
   public static Chassis chassis;
   public static MecchanumChassis mChassis;
+  public static VacuumIntake vacuumIntake;
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -41,6 +43,7 @@ public class Robot extends TimedRobot {
     m_oi = new OI();
     chassis = new Chassis();
     mChassis = new MecchanumChassis();
+    vacuumIntake = new VacuumIntake();
     m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     
     // chooser.addOption("My Auto", new MyAutoCommand());
