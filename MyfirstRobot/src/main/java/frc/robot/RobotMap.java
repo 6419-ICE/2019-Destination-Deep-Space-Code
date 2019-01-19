@@ -22,6 +22,7 @@ public static int BACK_RIGHT_DRIVE = 3;
 public static int LINE_SENSOR1 = 5;
 public static int LINE_SENSOR2 = 6;
 public static int LINE_SENSOR3 =7; 
+public static int LIMIT_SWITCH = 1;
 
   // For example to map the left and right motors, you could define the
   // following variables to use with your drivetrain subsystem.

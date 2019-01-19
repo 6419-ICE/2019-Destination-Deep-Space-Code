@@ -23,6 +23,7 @@ import frc.robot.*;
  */
 public class Chassis extends Subsystem implements PIDOutput {
   private LineSensor lineSensorLeft, lineSensorRight, lineSensorCenter;
+  private LimitSwitch limitSwitch;
   private Talon flDrive, frDrive, blDrive, brDrive;
   public static double kP = 1, kI = 0, kD = 0, kF = 0;
   public static double percentTolerance = 5f;
@@ -41,6 +42,7 @@ public class Chassis extends Subsystem implements PIDOutput {
     frDrive = new Talon(RobotMap.FRONT_RIGHT_DRIVE);
     blDrive = new Talon(RobotMap.BACK_LEFT_DRIVE);
     brDrive = new Talon(RobotMap.BACK_RIGHT_DRIVE);
+    limitSwitch = new LimitSwitch(RobotMap.LIMIT_SWITCH);
     turnPid = new PIDController(0, 0, 0, gyro, this);
     setPid();
     // TODO Set the direction of the motors to make driving have positive output
@@ -69,6 +71,10 @@ public class Chassis extends Subsystem implements PIDOutput {
     setPid();
     turnPid.setSetpoint(setpoint);
     turnPid.enable();
+  }
+  public boolean touchingWall()
+  {
+    return limitSwitch.getPressed();
   }
 
   /**
@@ -117,6 +123,7 @@ public class Chassis extends Subsystem implements PIDOutput {
     return DirectionEnum.UNKNOWN;
 
   }
+
   
 
 
