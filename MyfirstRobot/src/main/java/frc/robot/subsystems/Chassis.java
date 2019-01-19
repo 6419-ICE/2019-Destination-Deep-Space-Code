@@ -16,18 +16,17 @@ import edu.wpi.first.wpilibj.Joystick.AxisType;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.commands.HandleDrive;
-import frc.robot.*;
 
 /**
  * Add your docs here.
  */
 public class Chassis extends Subsystem implements PIDOutput {
   private LineSensor lineSensorLeft, lineSensorRight, lineSensorCenter;
-  private LimitSwitch limitSwitch;
   private Talon flDrive, frDrive, blDrive, brDrive;
   public static double kP = 1, kI = 0, kD = 0, kF = 0;
   public static double percentTolerance = 5f;
   private ADXRS450_Gyro gyro;
+  private LimitSwitch limitSwitch;
 
   public PIDController turnPid;
   // Put methods for controlling this subsystem
