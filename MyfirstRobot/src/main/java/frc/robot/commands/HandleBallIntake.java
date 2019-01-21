@@ -7,9 +7,7 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Robot;
 
 public class HandleBallIntake extends Command {
   public HandleBallIntake() {
@@ -26,7 +24,6 @@ public class HandleBallIntake extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Joystick j = Robot.m_oi.joystick1;
     
 
   }
