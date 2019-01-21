@@ -8,11 +8,9 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.Talon;
-import edu.wpi.first.wpilibj.Joystick.AxisType;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.commands.HandleDrive;
@@ -21,7 +19,6 @@ import frc.robot.commands.HandleDrive;
  * Add your docs here.
  */
 public class Chassis extends Subsystem implements PIDOutput {
-  private LineSensor lineSensor;
   private Talon flDrive, frDrive, blDrive, brDrive;
   public static double kP = 1, kI = 0, kD = 0, kF = 0;
   public static double percentTolerance = 5f;
@@ -33,7 +30,6 @@ public class Chassis extends Subsystem implements PIDOutput {
 
   public Chassis() {
     gyro = new ADXRS450_Gyro();
-    lineSensor = new LineSensor(RobotMap.LINE_SENSOR);
     flDrive = new Talon(RobotMap.FRONT_LEFT_DRIVE);
     frDrive = new Talon(RobotMap.FRONT_RIGHT_DRIVE);
     blDrive = new Talon(RobotMap.BACK_LEFT_DRIVE);
