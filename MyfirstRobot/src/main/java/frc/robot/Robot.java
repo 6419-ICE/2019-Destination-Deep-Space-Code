@@ -28,8 +28,6 @@ import frc.robot.subsystems.VacuumIntake;
 public class Robot extends TimedRobot {
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static OI m_oi;
-  public static Chassis chassis;
-  public static MecchanumChassis mChassis;
   public static VacuumIntake vacuumIntake;
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -41,8 +39,6 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     m_oi = new OI();
-    chassis = new Chassis();
-    mChassis = new MecchanumChassis();
     vacuumIntake = new VacuumIntake();
     m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     
