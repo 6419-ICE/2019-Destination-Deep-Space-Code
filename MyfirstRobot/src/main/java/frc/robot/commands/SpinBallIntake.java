@@ -7,31 +7,40 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class HandleBallIntake extends Command {
-  public HandleBallIntake() {
+public class SpinBallIntake extends Command {
+  double power, duration;
+
+  Timer timer;
+
+  public SpinBallIntake(double power, double duration) {
     requires(Robot.ballIntake);
-    // Use requires() here to declare subsystem dependencies
+    this.power = power;
+    this.duration = duration;
+        // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    timer = new Timer();
+    timer.start();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.ballIntake.set(Robot.m_oi.joystick2.getY());
+    Robot.ballIntake.set(power);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return timer.get() > duration;
   }
 
   // Called once after isFinished returns true
