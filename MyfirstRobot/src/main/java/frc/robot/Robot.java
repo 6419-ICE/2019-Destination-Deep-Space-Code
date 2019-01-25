@@ -41,7 +41,7 @@ public class Robot extends TimedRobot {
     m_oi = new OI();
     chassis = new Chassis();
     
-    mChassis = new MecchanumChassis();
+   // mChassis = new MecchanumChassis();
     m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     
     // chooser.addOption("My Auto", new MyAutoCommand());

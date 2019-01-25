@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 
 
+import com.analog.adis16448.frc.ADIS16448_IMU;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
@@ -26,14 +27,13 @@ public class Chassis extends Subsystem implements PIDOutput {
   private  WPI_TalonSRX flDrive, frDrive, blDrive, brDrive;
   public static double kP = 1, kI = 0, kD = 0, kF = 0;
   public static double percentTolerance = 5f;
-  private ADXRS450_Gyro gyro;
-
+  private ADIS16448_IMU gyro;
   public PIDController turnPid;
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
   public Chassis() {
-    gyro = new ADXRS450_Gyro();
+    gyro = new ADIS16448_IMU();
     flDrive = new WPI_TalonSRX(RobotMap.FRONT_LEFT_DRIVE);
     frDrive = new WPI_TalonSRX(RobotMap.FRONT_RIGHT_DRIVE);
     blDrive = new WPI_TalonSRX(RobotMap.BACK_LEFT_DRIVE);
@@ -52,6 +52,7 @@ public class Chassis extends Subsystem implements PIDOutput {
   }
 
   public void setPid() {
+    turnPid.setInputRange(-179, 179);
     turnPid.setP(kP);
     turnPid.setI(kI);
     turnPid.setD(kD);
