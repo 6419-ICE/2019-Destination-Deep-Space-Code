@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class HandleShoulder extends Command {
@@ -24,6 +25,8 @@ public class HandleShoulder extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    Joystick j = Robot.m_oi.joystick2;
+    Robot.shoulder.set(j.getY());
   }
 
   // Make this return true when this Command no longer needs to run execute()
