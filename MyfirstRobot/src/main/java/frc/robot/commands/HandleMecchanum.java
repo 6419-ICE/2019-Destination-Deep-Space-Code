@@ -13,7 +13,7 @@ import frc.robot.Robot;
 
 public class HandleMecchanum extends Command {
   public HandleMecchanum() {
-    requires(Robot.mChassis);
+    //requires(Robot.mChassis);
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -30,7 +30,8 @@ public class HandleMecchanum extends Command {
    double x = j.getRawAxis(0);
     double y = j.getRawAxis(1);
     double z = j.getRawAxis(2);
-    Robot.mChassis.drive(x, y, z);
+    
+   // Robot.mChassis.drive(x, y, z);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -42,7 +43,7 @@ public class HandleMecchanum extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-  Robot.mChassis.drive(0,0,0);
+ // Robot.mChassis.drive(0,0,0);
   }
 
   // Called when another command which requires one or more of the same

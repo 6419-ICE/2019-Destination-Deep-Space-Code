@@ -17,10 +17,10 @@ package frc.robot;
 public class RobotMap {
 
   //CAN devices
-public static int FRONT_LEFT_DRIVE = 0;
-public static int FRONT_RIGHT_DRIVE = 1;
-public static int BACK_LEFT_DRIVE = 2;
-public static int BACK_RIGHT_DRIVE = 3;
+public static int FRONT_LEFT_DRIVE = 3;
+public static int FRONT_RIGHT_DRIVE = 4;
+public static int BACK_LEFT_DRIVE = 1;
+public static int BACK_RIGHT_DRIVE = 2;
 //Sensors
 public static int LINE_SENSOR = 5; 
 
