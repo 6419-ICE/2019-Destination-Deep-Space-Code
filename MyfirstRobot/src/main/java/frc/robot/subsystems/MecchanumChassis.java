@@ -8,11 +8,9 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.Talon;
-import edu.wpi.first.wpilibj.Joystick.AxisType;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.commands.HandleDrive;
@@ -31,6 +29,7 @@ public class MecchanumChassis extends Subsystem implements PIDOutput {
   // here. Call these from Commands.
 
   public MecchanumChassis() {
+    
     gyro = new ADXRS450_Gyro();
     flDrive = new Talon(RobotMap.FRONT_LEFT_DRIVE);
     frDrive = new Talon(RobotMap.FRONT_RIGHT_DRIVE);

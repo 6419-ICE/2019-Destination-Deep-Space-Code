@@ -25,13 +25,20 @@ public class HandleDrive extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double left = Robot.m_oi.joystick1.getRawAxis(1) + Robot.m_oi.joystick1.getRawAxis(2);
-    double right = Robot.m_oi.joystick1.getRawAxis(1) - Robot.m_oi.joystick1.getRawAxis(2);
-    left = Math.min(Math.max(1, left), -1);
-    right = Math.min(Math.max(1, right), -1);
-    left = left*left;
-    right = right*right;
+    double left = -Robot.m_oi.joystick1.getRawAxis(1) +Robot.m_oi.joystick1.getRawAxis(2);
+    double right = -Robot.m_oi.joystick1.getRawAxis(1) - Robot.m_oi.joystick1.getRawAxis(2);
+    // left = Math.min(Math.max(-1, left), 1);
+    // right = Math.min(Math.max(-1, right), 1);
+    left = Math.max(-1, left);
+    left = Math.min(1, left);
+    right = Math.max(-1, right);
+    right = Math.min(1, right);
+    double signLeft = left < 0 ? -1:1;
+    double signRight = right < 0? -1:1;
+    left = left*left*signLeft;
+    right = right*right*signRight;
     Robot.chassis.drive(left, right);
+  
   }
 
   // Make this return true when this Command no longer needs to run execute()
