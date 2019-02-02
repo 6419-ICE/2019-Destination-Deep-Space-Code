@@ -23,42 +23,20 @@ import frc.robot.commands.HandleDrive;
  * Add your docs here.
  */
 public class Chassis extends Subsystem implements PIDOutput {
-<<<<<<< HEAD
-  private LineSensor lineSensorLeft, lineSensorRight, lineSensorCenter;
-  private Talon flDrive, frDrive, blDrive, brDrive;
-  public static double kP = 1, kI = 0, kD = 0, kF = 0;
-  public static double percentTolerance = 5f;
-  private ADXRS450_Gyro gyro;
-  private LimitSwitch limitSwitch;
-
-=======
   private  WPI_TalonSRX flDrive, frDrive, blDrive, brDrive;
   public static double kP = 1, kI = 0, kD = 0, kF = 0;
   public static double percentTolerance = 5f;
   private ADIS16448_IMU gyro;
->>>>>>> chassis
   public PIDController turnPid;
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
   public Chassis() {
-<<<<<<< HEAD
-    gyro = new ADXRS450_Gyro();
-    lineSensorLeft = new LineSensor(RobotMap.LINE_SENSOR1);
-    lineSensorCenter = new LineSensor(RobotMap.LINE_SENSOR2);
-    lineSensorRight = new LineSensor(RobotMap.LINE_SENSOR3);
-    flDrive = new Talon(RobotMap.FRONT_LEFT_DRIVE);
-    frDrive = new Talon(RobotMap.FRONT_RIGHT_DRIVE);
-    blDrive = new Talon(RobotMap.BACK_LEFT_DRIVE);
-    brDrive = new Talon(RobotMap.BACK_RIGHT_DRIVE);
-    limitSwitch = new LimitSwitch(RobotMap.LIMIT_SWITCH);
-=======
     gyro = new ADIS16448_IMU();
     flDrive = new WPI_TalonSRX(RobotMap.FRONT_LEFT_DRIVE);
     frDrive = new WPI_TalonSRX(RobotMap.FRONT_RIGHT_DRIVE);
     blDrive = new WPI_TalonSRX(RobotMap.BACK_LEFT_DRIVE);
     brDrive = new WPI_TalonSRX(RobotMap.BACK_RIGHT_DRIVE);
->>>>>>> chassis
     turnPid = new PIDController(0, 0, 0, gyro, this);
     setPid();
     // going straight.
