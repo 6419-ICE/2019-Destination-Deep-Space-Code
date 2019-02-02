@@ -15,6 +15,10 @@ package frc.robot;
  * floating around.
  */
 public class RobotMap {
+public static final int LINE_SENSOR1 = 0;
+public static final int LINE_SENSOR2 = 1;
+public static final int LINE_SENSOR3 = 2;
+
 
   //CAN devices
 public static int FRONT_LEFT_DRIVE = 3;
@@ -23,6 +27,9 @@ public static int BACK_LEFT_DRIVE = 1;
 public static int BACK_RIGHT_DRIVE = 2;
 //Sensors
 public static int LINE_SENSOR = 5; 
+public static int BALL_INTAKE = 6;
+public static int LIMIT_SWITCH = 7;
+
 
   // For example to map the left and right motors, you could define the
   // following variables to use with your drivetrain subsystem.

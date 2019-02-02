@@ -10,7 +10,8 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.AnalogInput;
 
 /**
- * Add your docs here.
+ * LineSensor
+ * 
  */
 public class LineSensor {
     private AnalogInput input;
@@ -23,7 +24,8 @@ public class LineSensor {
 
     public double getAverageVoltage()
     {
-        return input.getAverageVoltage();
+        double averageVoltage = input.getAverageVoltage();
+        return averageVoltage;
     }
     public double getRawAverageValue()
     {
@@ -35,7 +37,7 @@ public class LineSensor {
     }
     public boolean onTape()
     {
-        return getAverageVoltage() > 5;
+        return getAverageVoltage() < 2;
     }
 
     public int getPort()

@@ -12,11 +12,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commands.Drive;
-import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.HandleDrive;
 import frc.robot.subsystems.Chassis;
-import frc.robot.subsystems.ExampleSubsystem;
-import frc.robot.subsystems.MecchanumChassis;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -26,10 +23,10 @@ import frc.robot.subsystems.MecchanumChassis;
  * project.
  */
 public class Robot extends TimedRobot {
-  public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
-  public static OI m_oi;
   public static Chassis chassis;
- // public static MecchanumChassis mChassis;
+
+  public static OI m_oi;
+
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -39,12 +36,14 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    m_oi = new OI();
     chassis = new Chassis();
-    
+
+      //IMPORTANT: INITIALIZE OI AFTER SUBSYSTEMS
+
+    m_oi = new OI();
+
    // mChassis = new MecchanumChassis();
-    m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
-    m_chooser.addObject("Example", new Drive());
+    m_chooser.setDefaultOption("Default Auto", new HandleDrive());
     
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);

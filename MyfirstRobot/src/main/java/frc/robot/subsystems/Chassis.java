@@ -10,14 +10,16 @@ package frc.robot.subsystems;
 
 
 import com.analog.adis16448.frc.ADIS16448_IMU;
-import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.DirectionEnum;
 import frc.robot.RobotMap;
+import frc.robot.commands.FollowLine;
 import frc.robot.commands.HandleDrive;
+import frc.robot.commands.TestLineSensors;
 
 
 /**
@@ -29,18 +31,30 @@ public class Chassis extends Subsystem implements PIDOutput {
   public static double percentTolerance = 5f;
   private ADIS16448_IMU gyro;
   public PIDController turnPid;
+  private LineSensor lineSensorLeft, lineSensorCenter, lineSensorRight;
+ // private LimitSwitch limitSwitch;
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
   public Chassis() {
     gyro = new ADIS16448_IMU();
+   
     flDrive = new WPI_TalonSRX(RobotMap.FRONT_LEFT_DRIVE);
     frDrive = new WPI_TalonSRX(RobotMap.FRONT_RIGHT_DRIVE);
     blDrive = new WPI_TalonSRX(RobotMap.BACK_LEFT_DRIVE);
     brDrive = new WPI_TalonSRX(RobotMap.BACK_RIGHT_DRIVE);
     turnPid = new PIDController(0, 0, 0, gyro, this);
+
+    //Line sensors
+    lineSensorLeft = new LineSensor(RobotMap.LINE_SENSOR1);
+    lineSensorCenter = new LineSensor(RobotMap.LINE_SENSOR2);
+    lineSensorRight = new LineSensor(RobotMap.LINE_SENSOR3);
+
+    flDrive.setSafetyEnabled(false);
+    frDrive.setSafetyEnabled(false);
+    blDrive.setSafetyEnabled(false);
+    brDrive.setSafetyEnabled(false);
     setPid();
-    // TODO Set the direction of the motors to make driving have positive output
     // going straight.
     brDrive.setInverted(true);
     frDrive.setInverted(true);
@@ -48,6 +62,7 @@ public class Chassis extends Subsystem implements PIDOutput {
 
   @Override
   public void initDefaultCommand() {
+    //TODO Set default command back to driving.
     setDefaultCommand(new HandleDrive());
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
@@ -70,6 +85,10 @@ public class Chassis extends Subsystem implements PIDOutput {
     turnPid.setSetpoint(setpoint);
     turnPid.enable();
   }
+  // public boolean touchingWall()
+  // {
+  //   return limitSwitch.getPressed();
+  // }
 
   /**
    * Drives the robot using raw power.
@@ -85,5 +104,48 @@ public class Chassis extends Subsystem implements PIDOutput {
   public void pidWrite(double output) {
     drive(output, -output);
   }
+
+  public boolean getLeft()
+  {
+    return lineSensorLeft.onTape();
+  }
+  public boolean getCenter()
+  {
+    return lineSensorCenter.onTape();
+  }
+  public boolean getRight()
+  {
+    return lineSensorRight.onTape();
+  }
+  public DirectionEnum directionToTurn()
+  {
+    boolean left = getLeft();
+    boolean center = getCenter();
+    boolean right = getRight();
+    if(left && center && ! right)
+    {
+      return DirectionEnum.LEFT;
+    }
+    if(right && center && !left)
+    {
+      return DirectionEnum.RIGHT;
+    }
+    if(!left && center && !right)
+    {
+      return DirectionEnum.CENTER;
+    }
+    if(left && center && right)
+      return DirectionEnum.CENTER;
+    if(left && !center && !right)
+      return DirectionEnum.LEFT;
+    if(right && !center && !left)
+      return DirectionEnum.RIGHT;
+
+      return DirectionEnum.UNKNOWN;
+
+  }
+
+  
+
 
 }
