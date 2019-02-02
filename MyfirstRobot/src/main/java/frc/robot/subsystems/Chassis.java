@@ -10,7 +10,6 @@ package frc.robot.subsystems;
 
 
 import com.analog.adis16448.frc.ADIS16448_IMU;
-import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.PIDController;
@@ -40,7 +39,6 @@ public class Chassis extends Subsystem implements PIDOutput {
     brDrive = new WPI_TalonSRX(RobotMap.BACK_RIGHT_DRIVE);
     turnPid = new PIDController(0, 0, 0, gyro, this);
     setPid();
-    // TODO Set the direction of the motors to make driving have positive output
     // going straight.
     brDrive.setInverted(true);
     frDrive.setInverted(true);
