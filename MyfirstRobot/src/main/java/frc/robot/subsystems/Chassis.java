@@ -17,9 +17,7 @@ import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.DirectionEnum;
 import frc.robot.RobotMap;
-import frc.robot.commands.FollowLine;
 import frc.robot.commands.HandleDrive;
-import frc.robot.commands.TestLineSensors;
 
 
 /**
@@ -32,7 +30,7 @@ public class Chassis extends Subsystem implements PIDOutput {
   private ADIS16448_IMU gyro;
   public PIDController turnPid;
   private LineSensor lineSensorLeft, lineSensorCenter, lineSensorRight;
- // private LimitSwitch limitSwitch;
+  private LimitSwitch bumpSwitch;
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
@@ -49,6 +47,8 @@ public class Chassis extends Subsystem implements PIDOutput {
     lineSensorLeft = new LineSensor(RobotMap.LINE_SENSOR1);
     lineSensorCenter = new LineSensor(RobotMap.LINE_SENSOR2);
     lineSensorRight = new LineSensor(RobotMap.LINE_SENSOR3);
+
+    bumpSwitch = new LimitSwitch(RobotMap.BUMP_SWITCH);
 
     flDrive.setSafetyEnabled(false);
     frDrive.setSafetyEnabled(false);
@@ -85,10 +85,10 @@ public class Chassis extends Subsystem implements PIDOutput {
     turnPid.setSetpoint(setpoint);
     turnPid.enable();
   }
-  // public boolean touchingWall()
-  // {
-  //   return limitSwitch.getPressed();
-  // }
+  public boolean touchingWall()
+  {
+    return bumpSwitch.getPressed();
+  }
 
   /**
    * Drives the robot using raw power.

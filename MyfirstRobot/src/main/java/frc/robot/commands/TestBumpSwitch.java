@@ -10,54 +10,38 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class FollowLine extends Command {
-  public FollowLine() {
+public class TestBumpSwitch extends Command {
+  public TestBumpSwitch() {
     requires(Robot.chassis);
-    
+    // Use requires() here to declare subsystem dependencies
+    // eg. requires(chassis);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-   
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-  if(!Robot.chassis.touchingWall())
-  {
-    double left = .2;
-    double right = .2;
-    double difference = Robot.chassis.directionToTurn().getPower();
-    Robot.chassis.drive(left + difference, right - difference);
-    
-
-  }
-  else
-  {
-  Robot.chassis.drive(0, 0);
-  }
-  //TODO Spit out da ball
+    System.out.println(Robot.chassis.touchingWall());
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    // return Robot.chassis.touchingWall();
     return false;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.chassis.drive(0, 0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    end();
   }
 }

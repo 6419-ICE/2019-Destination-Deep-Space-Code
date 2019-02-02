@@ -28,7 +28,7 @@ public static int BACK_RIGHT_DRIVE = 2;
 //Sensors
 public static int LINE_SENSOR = 5; 
 public static int BALL_INTAKE = 6;
-public static int LIMIT_SWITCH = 7;
+public static int BUMP_SWITCH = 0;
 
 
   // For example to map the left and right motors, you could define the

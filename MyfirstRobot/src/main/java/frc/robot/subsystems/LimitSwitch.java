@@ -13,7 +13,7 @@ public class LimitSwitch
     }
     public boolean getPressed()
     {
-        return raw.get();
+        return !raw.get();
     }
 
 }
