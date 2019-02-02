@@ -37,7 +37,9 @@ public class LineSensor {
     }
     public boolean onTape()
     {
-        return getAverageVoltage() < 2;
+        double averageVoltage = 0;
+        averageVoltage = getAverageVoltage();
+        return averageVoltage < 3;
     }
 
     public int getPort()
