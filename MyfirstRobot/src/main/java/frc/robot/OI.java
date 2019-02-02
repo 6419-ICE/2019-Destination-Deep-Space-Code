@@ -25,7 +25,7 @@ public class OI {
     joystick1 = new Joystick(0);
     joystick2 = new Joystick(1);
     followLine = new JoystickButton(joystick1, 2);
-    followLine.whenPressed(new FollowLine());
+    followLine.whileActive(new FollowLine());
   }
   //// CREATING BUTTONS
   // One type of button is a joystick button which is any button on a

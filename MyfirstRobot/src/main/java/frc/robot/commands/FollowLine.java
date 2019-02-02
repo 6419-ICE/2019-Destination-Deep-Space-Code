@@ -13,11 +13,13 @@ import frc.robot.Robot;
 public class FollowLine extends Command {
   public FollowLine() {
     requires(Robot.chassis);
+    
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+   
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -26,13 +28,15 @@ public class FollowLine extends Command {
     double left = .6;
     double right = .6;
     double difference = Robot.chassis.directionToTurn().getPower();
+    System.out.println(left + difference);
     Robot.chassis.drive(left + difference, right + difference);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Robot.chassis.touchingWall();
+    // return Robot.chassis.touchingWall();
+    return true;
   }
 
   // Called once after isFinished returns true

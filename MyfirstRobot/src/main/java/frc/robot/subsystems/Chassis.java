@@ -17,6 +17,8 @@ import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.DirectionEnum;
 import frc.robot.RobotMap;
+import frc.robot.commands.FollowLine;
+import frc.robot.commands.HandleDrive;
 import frc.robot.commands.TestLineSensors;
 
 
@@ -30,7 +32,7 @@ public class Chassis extends Subsystem implements PIDOutput {
   private ADIS16448_IMU gyro;
   public PIDController turnPid;
   private LineSensor lineSensorLeft, lineSensorCenter, lineSensorRight;
-  private LimitSwitch limitSwitch;
+ // private LimitSwitch limitSwitch;
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
@@ -48,6 +50,10 @@ public class Chassis extends Subsystem implements PIDOutput {
     lineSensorCenter = new LineSensor(RobotMap.LINE_SENSOR2);
     lineSensorRight = new LineSensor(RobotMap.LINE_SENSOR3);
 
+    flDrive.setSafetyEnabled(false);
+    frDrive.setSafetyEnabled(false);
+    blDrive.setSafetyEnabled(false);
+    brDrive.setSafetyEnabled(false);
     setPid();
     // going straight.
     brDrive.setInverted(true);
@@ -56,7 +62,8 @@ public class Chassis extends Subsystem implements PIDOutput {
 
   @Override
   public void initDefaultCommand() {
-    setDefaultCommand(new TestLineSensors());
+    //TODO Set default command back to driving.
+    setDefaultCommand(new HandleDrive());
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }
@@ -78,10 +85,10 @@ public class Chassis extends Subsystem implements PIDOutput {
     turnPid.setSetpoint(setpoint);
     turnPid.enable();
   }
-  public boolean touchingWall()
-  {
-    return limitSwitch.getPressed();
-  }
+  // public boolean touchingWall()
+  // {
+  //   return limitSwitch.getPressed();
+  // }
 
   /**
    * Drives the robot using raw power.
@@ -113,13 +120,8 @@ public class Chassis extends Subsystem implements PIDOutput {
   public DirectionEnum directionToTurn()
   {
     boolean left = getLeft();
-    System.out.print("left: " + left + "\t");
     boolean center = getCenter();
-    System.out.print("center: " + center + "\t");
-
     boolean right = getRight();
-    System.out.print("right: " + right + "\t");
-
     if(left && center && ! right)
     {
       return DirectionEnum.LEFT;
@@ -138,7 +140,7 @@ public class Chassis extends Subsystem implements PIDOutput {
       return DirectionEnum.LEFT;
     if(right && !center && !left)
       return DirectionEnum.RIGHT;
-      
+
       return DirectionEnum.UNKNOWN;
 
   }

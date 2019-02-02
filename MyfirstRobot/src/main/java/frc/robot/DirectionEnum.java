@@ -30,7 +30,7 @@ LEFT{
 
     @Override
    public double getPower() {
-      return 3d;
+      return .3d;
     }
 
   };
