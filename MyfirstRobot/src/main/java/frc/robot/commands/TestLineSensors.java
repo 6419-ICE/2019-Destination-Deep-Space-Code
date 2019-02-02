@@ -7,13 +7,12 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class HandleBallIntake extends Command {
-  public HandleBallIntake() {
-    
+public class TestLineSensors extends Command {
+  public TestLineSensors() {
+    requires(Robot.chassis);
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -26,8 +25,9 @@ public class HandleBallIntake extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Joystick j = Robot.m_oi.joystick1;
-
+    
+    System.out.println("Direction: " +Robot.chassis.directionToTurn());
+    
   }
 
   // Make this return true when this Command no longer needs to run execute()

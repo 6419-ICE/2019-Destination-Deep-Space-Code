@@ -15,9 +15,9 @@ package frc.robot;
  * floating around.
  */
 public class RobotMap {
-public static final int LINE_SENSOR1 = 4;
-public static final int LINE_SENSOR2 = 5;
-public static final int LINE_SENSOR3 = 6;
+public static final int LINE_SENSOR1 = 0;
+public static final int LINE_SENSOR2 = 1;
+public static final int LINE_SENSOR3 = 2;
 
 
   //CAN devices

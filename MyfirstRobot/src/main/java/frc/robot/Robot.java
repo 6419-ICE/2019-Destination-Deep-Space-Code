@@ -23,8 +23,10 @@ import frc.robot.subsystems.Chassis;
  * project.
  */
 public class Robot extends TimedRobot {
-  public static OI m_oi;
   public static Chassis chassis;
+
+  public static OI m_oi;
+
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -34,9 +36,12 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    m_oi = new OI();
     chassis = new Chassis();
-    
+
+      //IMPORTANT: INITIALIZE OI AFTER SUBSYSTEMS
+
+    m_oi = new OI();
+
    // mChassis = new MecchanumChassis();
     m_chooser.setDefaultOption("Default Auto", new HandleDrive());
     
