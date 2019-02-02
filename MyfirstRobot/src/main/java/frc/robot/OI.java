@@ -8,10 +8,14 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+<<<<<<< HEAD
 import edu.wpi.first.wpilibj.Joystick.AxisType;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.FollowLine;
+=======
+
+>>>>>>> chassis
 
 /**
  * This class is the glue that binds the controls on the physical operator

@@ -7,20 +7,23 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.ADXRS450_Gyro;
-import edu.wpi.first.wpilibj.Joystick;
+
+
+import com.analog.adis16448.frc.ADIS16448_IMU;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
-import edu.wpi.first.wpilibj.Talon;
-import edu.wpi.first.wpilibj.Joystick.AxisType;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.commands.HandleDrive;
+
 
 /**
  * Add your docs here.
  */
 public class Chassis extends Subsystem implements PIDOutput {
+<<<<<<< HEAD
   private LineSensor lineSensorLeft, lineSensorRight, lineSensorCenter;
   private Talon flDrive, frDrive, blDrive, brDrive;
   public static double kP = 1, kI = 0, kD = 0, kF = 0;
@@ -28,11 +31,18 @@ public class Chassis extends Subsystem implements PIDOutput {
   private ADXRS450_Gyro gyro;
   private LimitSwitch limitSwitch;
 
+=======
+  private  WPI_TalonSRX flDrive, frDrive, blDrive, brDrive;
+  public static double kP = 1, kI = 0, kD = 0, kF = 0;
+  public static double percentTolerance = 5f;
+  private ADIS16448_IMU gyro;
+>>>>>>> chassis
   public PIDController turnPid;
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
   public Chassis() {
+<<<<<<< HEAD
     gyro = new ADXRS450_Gyro();
     lineSensorLeft = new LineSensor(RobotMap.LINE_SENSOR1);
     lineSensorCenter = new LineSensor(RobotMap.LINE_SENSOR2);
@@ -42,10 +52,18 @@ public class Chassis extends Subsystem implements PIDOutput {
     blDrive = new Talon(RobotMap.BACK_LEFT_DRIVE);
     brDrive = new Talon(RobotMap.BACK_RIGHT_DRIVE);
     limitSwitch = new LimitSwitch(RobotMap.LIMIT_SWITCH);
+=======
+    gyro = new ADIS16448_IMU();
+    flDrive = new WPI_TalonSRX(RobotMap.FRONT_LEFT_DRIVE);
+    frDrive = new WPI_TalonSRX(RobotMap.FRONT_RIGHT_DRIVE);
+    blDrive = new WPI_TalonSRX(RobotMap.BACK_LEFT_DRIVE);
+    brDrive = new WPI_TalonSRX(RobotMap.BACK_RIGHT_DRIVE);
+>>>>>>> chassis
     turnPid = new PIDController(0, 0, 0, gyro, this);
     setPid();
-    // TODO Set the direction of the motors to make driving have positive output
     // going straight.
+    brDrive.setInverted(true);
+    frDrive.setInverted(true);
   }
 
   @Override
@@ -56,6 +74,7 @@ public class Chassis extends Subsystem implements PIDOutput {
   }
 
   public void setPid() {
+    turnPid.setInputRange(-179, 179);
     turnPid.setP(kP);
     turnPid.setI(kI);
     turnPid.setD(kD);
