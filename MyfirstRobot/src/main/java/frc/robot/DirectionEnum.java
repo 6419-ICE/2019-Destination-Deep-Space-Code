@@ -6,7 +6,7 @@ LEFT{
 
     @Override
   public double getPower() {
-      return -.2;
+      return .4;
     }
     
 },
@@ -14,7 +14,7 @@ LEFT{
 
     @Override
   public  double getPower() {
-      return .2;
+      return -.4;
     }
 
  },
@@ -26,6 +26,7 @@ LEFT{
     }
 
   },
+  
   UNKNOWN{
 
     @Override
