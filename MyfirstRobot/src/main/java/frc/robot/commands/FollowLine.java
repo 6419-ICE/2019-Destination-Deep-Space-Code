@@ -25,18 +25,17 @@ public class FollowLine extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double left = .6;
-    double right = .6;
+    double left = .2;
+    double right = .2;
     double difference = Robot.chassis.directionToTurn().getPower();
-    System.out.println(left + difference);
-    Robot.chassis.drive(left + difference, right + difference);
+    Robot.chassis.drive(left + difference, right - difference);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
     // return Robot.chassis.touchingWall();
-    return true;
+    return false;
   }
 
   // Called once after isFinished returns true
