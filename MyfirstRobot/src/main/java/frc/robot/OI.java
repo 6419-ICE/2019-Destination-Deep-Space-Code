@@ -10,7 +10,6 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.FollowLine;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -25,7 +24,6 @@ public class OI {
     joystick1 = new Joystick(0);
     joystick2 = new Joystick(1);
     followLine = new JoystickButton(joystick1, 2);
-    followLine.whileActive(new FollowLine());
   }
   //// CREATING BUTTONS
   // One type of button is a joystick button which is any button on a
