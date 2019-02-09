@@ -11,6 +11,8 @@ package frc.robot.subsystems;
 
 import com.analog.adis16448.frc.ADIS16448_IMU;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
@@ -24,7 +26,7 @@ import frc.robot.commands.HandleDrive;
  * Add your docs here.
  */
 public class Chassis extends Subsystem implements PIDOutput {
-  private  WPI_TalonSRX flDrive, frDrive, blDrive, brDrive;
+  private  CANSparkMax flDrive, frDrive, blDrive, brDrive;
   public static double kP = 1, kI = 0, kD = 0, kF = 0;
   public static double percentTolerance = 5f;
   private ADIS16448_IMU gyro;
@@ -37,10 +39,10 @@ public class Chassis extends Subsystem implements PIDOutput {
   public Chassis() {
     gyro = new ADIS16448_IMU();
    
-    flDrive = new WPI_TalonSRX(RobotMap.FRONT_LEFT_DRIVE);
-    frDrive = new WPI_TalonSRX(RobotMap.FRONT_RIGHT_DRIVE);
-    blDrive = new WPI_TalonSRX(RobotMap.BACK_LEFT_DRIVE);
-    brDrive = new WPI_TalonSRX(RobotMap.BACK_RIGHT_DRIVE);
+    flDrive = new CANSparkMax(RobotMap.FRONT_LEFT_DRIVE, MotorType.kBrushless);
+    frDrive = new CANSparkMax(RobotMap.FRONT_RIGHT_DRIVE, MotorType.kBrushless);
+    blDrive = new CANSparkMax(RobotMap.BACK_LEFT_DRIVE, MotorType.kBrushless);
+    brDrive = new CANSparkMax(RobotMap.BACK_RIGHT_DRIVE, MotorType.kBrushless);
     turnPid = new PIDController(0, 0, 0, gyro, this);
 
     //Line sensors
@@ -50,10 +52,6 @@ public class Chassis extends Subsystem implements PIDOutput {
 
     bumpSwitch = new LimitSwitch(RobotMap.BUMP_SWITCH);
 
-    flDrive.setSafetyEnabled(false);
-    frDrive.setSafetyEnabled(false);
-    blDrive.setSafetyEnabled(false);
-    brDrive.setSafetyEnabled(false);
     setPid();
     // going straight.
     brDrive.setInverted(true);
