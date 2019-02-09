@@ -29,6 +29,8 @@ public static int BACK_RIGHT_DRIVE = 2;
 public static int LINE_SENSOR = 5; 
 public static int BALL_INTAKE = 6;
 public static int BUMP_SWITCH = 0;
+//TODO set proper port for wrist
+public static int WRIST = 0;
 
 
   // For example to map the left and right motors, you could define the
