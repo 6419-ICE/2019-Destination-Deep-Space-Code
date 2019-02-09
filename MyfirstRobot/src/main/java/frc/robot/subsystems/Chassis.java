@@ -54,6 +54,7 @@ public class Chassis extends Subsystem implements PIDOutput {
 
     setPid();
     // going straight.
+    flDrive.setInverted(false);
     brDrive.setInverted(true);
     frDrive.setInverted(true);
   }
