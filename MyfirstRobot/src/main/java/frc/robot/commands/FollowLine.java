@@ -7,13 +7,12 @@
 
 package frc.robot.commands;
 
-import java.util.ArrayList;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class FollowLine extends Command {
-  private ArrayList<Double> outputs =new ArrayList<Double>(4);
+ // private ArrayList<Double> outputs =new ArrayList<Double>(4);
 //  private double kD = .8;
   public FollowLine() {
     requires(Robot.chassis);
@@ -41,7 +40,7 @@ public class FollowLine extends Command {
     double left = .2;
     double right = .2;
     double difference = Robot.chassis.directionToTurn().getPower();
-    difference = difference;
+    
    // System.out.println(outputs);
   //  double sum = 0;
     // for(int i = 0; i < 20; i++)
