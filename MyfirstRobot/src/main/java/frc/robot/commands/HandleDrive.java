@@ -25,8 +25,8 @@ public class HandleDrive extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double left = -Robot.m_oi.joystick1.getRawAxis(1) +Robot.m_oi.joystick1.getRawAxis(2);
-    double right = -Robot.m_oi.joystick1.getRawAxis(1) - Robot.m_oi.joystick1.getRawAxis(2);
+    double left = -Robot.m_oi.joystick1.getRawAxis(1);
+    double right = -Robot.m_oi.joystick2.getRawAxis(1);
     // left = Math.min(Math.max(-1, left), 1);
     // right = Math.min(Math.max(-1, right), 1);
     left = Math.max(-1, left);
