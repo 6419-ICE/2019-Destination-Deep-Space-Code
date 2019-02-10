@@ -17,6 +17,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.DirectionEnum;
 import frc.robot.RobotMap;
 import frc.robot.commands.HandleDrive;
@@ -26,16 +27,24 @@ import frc.robot.commands.HandleDrive;
  * Add your docs here.
  */
 public class Chassis extends Subsystem implements PIDOutput {
+  //drive motors
   private  CANSparkMax flDrive, frDrive, blDrive, brDrive;
+
+  //gyro
+  private ADIS16448_IMU gyro;
+
+
+  //pid variables
+
   public static double kP = 1, kI = 0, kD = 0, kF = 0;
   public static double percentTolerance = 5f;
-  private ADIS16448_IMU gyro;
   public PIDController turnPid;
+
+  //line follower 
+
   private LineSensor lineSensorLeft, lineSensorCenter, lineSensorRight;
   private LimitSwitch bumpSwitch;
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
-
+  
   public Chassis() {
     gyro = new ADIS16448_IMU();
    
@@ -52,12 +61,24 @@ public class Chassis extends Subsystem implements PIDOutput {
 
     bumpSwitch = new LimitSwitch(RobotMap.BUMP_SWITCH);
 
-    setPid();
     // going straight.
     flDrive.setInverted(false);
     brDrive.setInverted(true);
     frDrive.setInverted(true);
+    
+    //init the pid
+    setPid();
+
+
+    //Add to smart dashboard
+    SmartDashboard.putNumber("P", 0);
+    SmartDashboard.putNumber("I", 0);
+    SmartDashboard.putNumber("D", 0);
+    SmartDashboard.putData(this.turnPid);
+
   }
+
+//general methods
 
   @Override
   public void initDefaultCommand() {
@@ -67,28 +88,8 @@ public class Chassis extends Subsystem implements PIDOutput {
     // setDefaultCommand(new MySpecialCommand());
   }
 
-  public void setPid() {
-    turnPid.setInputRange(-179, 179);
-    turnPid.setP(kP);
-    turnPid.setI(kI);
-    turnPid.setD(kD);
-    turnPid.setF(kF);
-    turnPid.setOutputRange(-1, 1);
-    turnPid.setPercentTolerance(percentTolerance);
-    turnPid.setContinuous(true);
-
-  }
-
-  public void startTurnPid(double setpoint) {
-    setPid();
-    turnPid.setSetpoint(setpoint);
-    turnPid.enable();
-  }
-  public boolean touchingWall()
-  {
-    return bumpSwitch.getPressed();
-  }
-
+ 
+ 
   /**
    * Drives the robot using raw power.
    */
@@ -99,11 +100,42 @@ public class Chassis extends Subsystem implements PIDOutput {
     brDrive.set(right);
   }
 
+//PID code
+
+public void setPid() {
+  updatePIDConstants();
+  turnPid.setInputRange(-179, 179);
+  turnPid.setP(kP);
+  turnPid.setI(kI);
+  turnPid.setD(kD);
+  turnPid.setF(kF);
+  turnPid.setOutputRange(-1, 1);
+  turnPid.setPercentTolerance(percentTolerance);
+  turnPid.setContinuous(true);
+
+}
+
+public void updatePIDConstants()
+  {
+    kP = SmartDashboard.getNumber("P", 0);
+    kI = SmartDashboard.getNumber("I", 0);
+    kD = SmartDashboard.getNumber("D", 0);
+    kF = 0;
+  }
+
+  public void startTurnPid(double setpoint) {
+    setPid();
+    turnPid.setSetpoint(setpoint);
+    turnPid.enable();
+  }
+
   @Override
   public void pidWrite(double output) {
     drive(output, -output);
   }
 
+
+  //Line follower code
   public boolean getLeft()
   {
     return lineSensorLeft.onTape();
@@ -116,6 +148,12 @@ public class Chassis extends Subsystem implements PIDOutput {
   {
     return lineSensorRight.onTape();
   }
+
+  public boolean touchingWall()
+  {
+    return bumpSwitch.getPressed();
+  }
+
   public DirectionEnum directionToTurn()
   {
     System.out.print("left\t");

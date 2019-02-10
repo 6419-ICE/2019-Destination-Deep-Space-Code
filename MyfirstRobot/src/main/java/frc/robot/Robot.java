@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.commands.TurnDegrees;
 import frc.robot.subsystems.Chassis;
 
 /**
@@ -39,7 +40,7 @@ public class Robot extends TimedRobot {
 
 
    // mChassis = new MecchanumChassis();
-    m_chooser.setDefaultOption("Default Auto", null);
+    m_chooser.setDefaultOption("Default Auto", new TurnDegrees(30, 3));
     SmartDashboard.putData("Auto mode", m_chooser);
   
   }
