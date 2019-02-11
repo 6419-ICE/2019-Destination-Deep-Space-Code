@@ -15,10 +15,10 @@ package frc.robot;
  * floating around.
  */
 public class RobotMap {
-public static final int LINE_SENSOR1 = 0;
-public static final int LINE_SENSOR2 = 1;
-public static final int LINE_SENSOR3 = 2;
 
+//motors
+public static int FRONT_CLIMBER = 0;
+public static int BACK_CLIMBER = 1;
 
   //CAN devices
 public static int FRONT_LEFT_DRIVE = 0;
@@ -26,9 +26,15 @@ public static int FRONT_RIGHT_DRIVE = 1;
 public static int BACK_LEFT_DRIVE = 2;
 public static int BACK_RIGHT_DRIVE = 3;
 //Sensors
-public static int LINE_SENSOR = 5; 
 public static int BALL_INTAKE = 6;
 public static int BUMP_SWITCH = 0;
+public static final int LINE_SENSOR1 = 0;
+public static final int LINE_SENSOR2 = 1;
+public static final int LINE_SENSOR3 = 2;
+
+
+public static int FRONT_CLIMBER_BUMP = 3;
+public static int BACK_CLIMBER_BUMP = 4;
 
 
 
