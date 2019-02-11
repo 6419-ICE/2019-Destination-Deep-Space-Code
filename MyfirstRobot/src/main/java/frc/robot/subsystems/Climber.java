@@ -10,6 +10,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
+import frc.robot.commands.HandleClimber;
 
 /**
  * Add your docs here.
@@ -35,6 +36,7 @@ public class Climber extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
+    setDefaultCommand(new HandleClimber());
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }
@@ -51,6 +53,6 @@ public class Climber extends Subsystem {
   }
   public void holdPosition()
   {
-    
+
   }
 }

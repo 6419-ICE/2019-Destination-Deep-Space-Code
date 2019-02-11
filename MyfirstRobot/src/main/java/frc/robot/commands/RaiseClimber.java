@@ -7,12 +7,10 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Robot;
 
-public class HandleClimber extends Command {
-  public HandleClimber() {
+public class RaiseClimber extends Command {
+  public RaiseClimber() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -25,7 +23,6 @@ public class HandleClimber extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.climber.holdPosition();
   }
 
   // Make this return true when this Command no longer needs to run execute()
