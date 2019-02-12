@@ -36,10 +36,10 @@ public class FrontClimber extends Subsystem {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }
-  public void raiseFront()
+  public void raiseFront(double power)
   {
     if(!frontSwitch.getPressed())
-      front.set(.6);
+      front.set(power);
 
   }
 

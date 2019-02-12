@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.FollowLine;
+import frc.robot.commands.RaiseFrontClimber;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -20,12 +21,24 @@ public class OI {
   public Joystick joystick1;
   public Joystick joystick2;
   Button followLine;
+  Button raiseFront;
+  Button raiseBack;
+  Button lowerFront;
+  Button  lowerBack;
   public OI()
   {
     joystick1 = new Joystick(0);
     joystick2 = new Joystick(1);
     followLine = new JoystickButton(joystick1, 2);
     followLine.whileActive(new FollowLine());
+    
+    raiseFront = new JoystickButton(joystick2, 1);
+    lowerFront = new JoystickButton(joystick2, 2);
+    raiseBack = new JoystickButton(joystick2, 3);
+    lowerBack = new JoystickButton(joystick2, 4);
+
+    raiseFront.whileHeld(new RaiseFrontClimber(0));
+    lowerFront.whileHeld(new );
   }
   //// CREATING BUTTONS
   // One type of button is a joystick button which is any button on a
