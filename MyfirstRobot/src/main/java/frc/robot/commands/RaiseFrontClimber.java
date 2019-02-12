@@ -9,15 +9,16 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
+import frc.robot.ClimberDirection;
 import frc.robot.Robot;
 
 public class RaiseFrontClimber extends Command {
-  private Timer timer;
-  private double time;
+  ClimberDirection direction;
 
-  public RaiseFrontClimber(double duration) {
+  public RaiseFrontClimber(ClimberDirection direction) {
     requires(Robot.frontClimber);
-    time = duration;
+    this.direction = direction;
     
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -26,19 +27,18 @@ public class RaiseFrontClimber extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    timer.start();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.frontClimber.raiseFront();
+    Robot.frontClimber.raiseFront(direction);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return timer.get() > time;
+    return true;
   }
 
   // Called once after isFinished returns true

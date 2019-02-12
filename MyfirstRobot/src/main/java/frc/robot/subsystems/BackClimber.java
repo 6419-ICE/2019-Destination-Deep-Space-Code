@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.ClimberDirection;
 import frc.robot.RobotMap;
 import frc.robot.commands.HandleBackDrive;
 
@@ -17,6 +18,7 @@ import frc.robot.commands.HandleBackDrive;
  */
 public class BackClimber extends Subsystem {
     private VictorSP motor;
+    private boolean raised = false;
     private LimitSwitch backSwitch;
     public BackClimber()
     {
@@ -41,10 +43,21 @@ public class BackClimber extends Subsystem {
    {
     this.setDefaultCommand(new HandleBackDrive());
   }
-  public void raiseClimber()
+  public boolean raiseClimber(ClimberDirection direction)
   {
-    if(!backSwitch.getPressed()){
-      motor.setSpeed(.6);
+    if(!backSwitch.getPressed())
+    {
+      motor.setSpeed(direction.getValue());
+      raised = false;
     }
+    else{
+      raised = true;
+      
+    }
+    return raised;
+  }
+  public boolean getRaised()
+  {
+    return raised;
   }
 }

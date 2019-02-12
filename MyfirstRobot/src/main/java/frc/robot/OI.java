@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.FollowLine;
+import frc.robot.commands.RaiseBackClimber;
 import frc.robot.commands.RaiseFrontClimber;
 
 /**
@@ -37,8 +38,10 @@ public class OI {
     raiseBack = new JoystickButton(joystick2, 3);
     lowerBack = new JoystickButton(joystick2, 4);
 
-    raiseFront.whileHeld(new RaiseFrontClimber(0));
-    lowerFront.whileHeld(new );
+    raiseFront.whileHeld(new RaiseFrontClimber(ClimberDirection.UP));
+    lowerFront.whileHeld(new RaiseFrontClimber(ClimberDirection.DOWN));
+    raiseBack.whileHeld(new RaiseBackClimber(ClimberDirection.UP));
+    lowerBack.whileHeld(new RaiseBackClimber(ClimberDirection.DOWN));
   }
   //// CREATING BUTTONS
   // One type of button is a joystick button which is any button on a

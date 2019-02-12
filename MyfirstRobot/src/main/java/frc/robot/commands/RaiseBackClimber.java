@@ -8,9 +8,14 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.ClimberDirection;
+import frc.robot.Robot;
 
-public class RaiseClimber extends Command {
-  public RaiseClimber(double speed) {
+public class RaiseBackClimber extends Command {
+  ClimberDirection direction;
+  public RaiseBackClimber(ClimberDirection direction) {
+    requires(Robot.backClimber);
+    this.direction = direction;
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -23,12 +28,13 @@ public class RaiseClimber extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    Robot.backClimber.raiseClimber(direction);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return Robot.backClimber.getRaised();
   }
 
   // Called once after isFinished returns true

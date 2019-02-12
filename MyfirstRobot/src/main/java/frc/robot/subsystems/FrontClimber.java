@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.ClimberDirection;
 import frc.robot.RobotMap;
 import frc.robot.commands.HandleFrontClimber;
 
@@ -18,6 +19,7 @@ import frc.robot.commands.HandleFrontClimber;
 public class FrontClimber extends Subsystem {
   private VictorSP front;
   private LimitSwitch frontSwitch;
+  private boolean raised = false;
 
   public FrontClimber()
   {
@@ -36,11 +38,18 @@ public class FrontClimber extends Subsystem {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }
-  public void raiseFront(double power)
+  public boolean raiseFront(ClimberDirection direction)
   {
     if(!frontSwitch.getPressed())
-      front.set(power);
-
+      {
+        front.setSpeed(direction.getValue());
+        raised = false;
+        return false;
+      }
+    else{
+      raised = true;
+      return true;
+    }
   }
 
   public void holdPosition()
@@ -50,5 +59,9 @@ public class FrontClimber extends Subsystem {
   public void set(double speed)
   {
     front.set(speed);
+  }
+  public boolean getRaised()
+  {
+    return raised;
   }
 }
