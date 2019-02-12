@@ -8,7 +8,6 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.AnalogInput;
-import edu.wpi.first.wpilibj.DigitalInput;
 
 /**
  * Add your docs here.
@@ -16,12 +15,10 @@ import edu.wpi.first.wpilibj.DigitalInput;
 public class EncoderWrapper {
     private double angle = 0.0;
     private AnalogInput input;
-    private DigitalInput digitalInput;
     
 private static double ARMATURE_TO_PINION = 174.9;
 public static double PINION_TO_DEGREES = 360;
 
-        //TODO check that the encoder remains at 0 as the robot rests.
         // The accumulator center is probably wrong
     public EncoderWrapper(int port)
     {
