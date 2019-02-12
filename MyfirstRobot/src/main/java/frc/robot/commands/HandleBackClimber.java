@@ -11,8 +11,8 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class HandleBackDrive extends Command {
-  public HandleBackDrive() {
+public class HandleBackClimber extends Command {
+  public HandleBackClimber() {
     requires(Robot.backClimber);
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);

@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.ClimberDirection;
 import frc.robot.RobotMap;
-import frc.robot.commands.HandleBackDrive;
+import frc.robot.commands.HandleBackClimber;
 
 /**
  * Add your docs here.
@@ -41,7 +41,7 @@ public class BackClimber extends Subsystem {
   @Override
   public void initDefaultCommand()
    {
-    this.setDefaultCommand(new HandleBackDrive());
+    this.setDefaultCommand(new HandleBackClimber());
   }
   public boolean raiseClimber(ClimberDirection direction)
   {
