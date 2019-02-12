@@ -10,23 +10,19 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-import frc.robot.commands.HandleClimber;
+import frc.robot.commands.HandleFrontClimber;
 
 /**
  * Add your docs here.
  */
-public class Climber extends Subsystem {
+public class FrontClimber extends Subsystem {
   private VictorSP front;
-  private VictorSP back;
   private LimitSwitch frontSwitch;
-  private LimitSwitch backSwitch;
 
-  public Climber()
+  public FrontClimber()
   {
     front = new VictorSP(RobotMap.FRONT_CLIMBER);
-    back = new VictorSP(RobotMap.BACK_CLIMBER);
     frontSwitch = new LimitSwitch(RobotMap.FRONT_CLIMBER_BUMP);
-    backSwitch = new LimitSwitch(RobotMap.BACK_CLIMBER_BUMP);
   //TODO make the motors stay in brake mode by pushing their button.
     //TODO Set the directions of the motors
 }
@@ -36,7 +32,7 @@ public class Climber extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    setDefaultCommand(new HandleClimber());
+    setDefaultCommand(new HandleFrontClimber());
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }
@@ -46,13 +42,13 @@ public class Climber extends Subsystem {
       front.set(.6);
 
   }
-  public void raiseBack()
-  {
-    if(!backSwitch.getPressed())
-      back.set(.6);
-  }
+
   public void holdPosition()
   {
-
+    front.setSpeed(0);
+  }
+  public void set(double speed)
+  {
+    front.set(speed);
   }
 }

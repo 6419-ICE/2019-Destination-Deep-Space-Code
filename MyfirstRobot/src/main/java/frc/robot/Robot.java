@@ -12,8 +12,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.subsystems.BackClimber;
 import frc.robot.subsystems.Chassis;
-import frc.robot.subsystems.Climber;
+import frc.robot.subsystems.FrontClimber;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -24,7 +25,8 @@ import frc.robot.subsystems.Climber;
  */
 public class Robot extends TimedRobot {
   public static Chassis chassis;
-  public static Climber climber;
+  public static FrontClimber frontClimber;
+  public static BackClimber backClimber;
   public static  OI m_oi;
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -36,7 +38,8 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     chassis = new Chassis();
-    climber = new Climber();
+    frontClimber = new FrontClimber();
+    backClimber = new BackClimber();
       //IMPORTANT: INITIALIZE OI AFTER SUBSYSTEMS
     m_oi = new OI();
 

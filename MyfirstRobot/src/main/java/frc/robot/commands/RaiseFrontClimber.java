@@ -7,12 +7,18 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class HandleClimber extends Command {
-  public HandleClimber() {
+public class RaiseFrontClimber extends Command {
+  private Timer timer;
+  private double time;
+
+  public RaiseFrontClimber(double duration) {
+    requires(Robot.frontClimber);
+    time = duration;
+    
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -20,28 +26,30 @@ public class HandleClimber extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    timer.start();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.climber.holdPosition();
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return timer.get() > time;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.frontClimber.set(0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    end();
   }
 }
