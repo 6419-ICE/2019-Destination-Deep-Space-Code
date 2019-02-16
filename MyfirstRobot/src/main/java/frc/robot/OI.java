@@ -8,6 +8,9 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.SpinBallIntake;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -16,11 +19,17 @@ import edu.wpi.first.wpilibj.Joystick;
 public class OI {
   public Joystick joystick1;
   public Joystick joystick2;
-
+  private Button succ;
+  private Button blow;
   public OI()
   {
     joystick1 = new Joystick(0);
-    joystick2 = new Joystick(1);
+ //   joystick2 = new Joystick(1);
+    succ = new JoystickButton(joystick1, 4);
+    blow = new JoystickButton(joystick1, 6);
+    succ.whileHeld(new SpinBallIntake(.7, 0));
+    blow.whileHeld(new SpinBallIntake(-.7, 0));
+
   }
   //// CREATING BUTTONS
   // One type of button is a joystick button which is any button on a

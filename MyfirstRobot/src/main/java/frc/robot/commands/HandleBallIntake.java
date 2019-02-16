@@ -25,7 +25,8 @@ public class HandleBallIntake extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.ballIntake.set(Robot.m_oi.joystick2.getY());
+    Robot.ballIntake.set(0);
+    // Robot.ballIntake.set(Robot.m_oi.joystick2.getY());
   }
 
   // Make this return true when this Command no longer needs to run execute()

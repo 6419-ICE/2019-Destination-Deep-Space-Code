@@ -8,7 +8,9 @@
 package frc.robot.subsystems;
 
 
-import edu.wpi.first.wpilibj.VictorSP;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.commands.HandleBallIntake;
@@ -17,21 +19,22 @@ import frc.robot.commands.HandleBallIntake;
  * Add your docs here.
  */
 public class BallIntake extends Subsystem {
-  private VictorSP intake;
+  private VictorSPX intake;
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 public BallIntake()
 {
-  intake = new VictorSP(RobotMap.BALL_INTAKE);
+  intake = new VictorSPX(RobotMap.BALL_INTAKE);
 }
 public void set(double input)
 {
-  intake.set(input);
+  System.out.println("set" +input);
+  intake.set(ControlMode.PercentOutput, input);
 }
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
-    this.setDefaultCommand(new HandleBallIntake());
+  this.setDefaultCommand(new HandleBallIntake());
   }
 }
