@@ -30,6 +30,7 @@ public static int LINE_SENSOR = 5;
 public static int BALL_INTAKE = 6;
 public static int BUMP_SWITCH = 0;
 public static int WRIST = 10;
+public static int WRIST_ENCODER = 0;
 
 
   // For example to map the left and right motors, you could define the

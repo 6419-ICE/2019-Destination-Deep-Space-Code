@@ -22,7 +22,7 @@ import frc.robot.subsystems.Wrist;
  * project.
  */
 public class Robot extends TimedRobot {
-  OI m_oi;
+public static   OI m_oi;
   public static Wrist wrist;
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
