@@ -12,8 +12,8 @@ import frc.robot.Robot;
 import frc.robot.Util;
 
 public class SetWristPosition extends Command {
-  private double position;
-  public SetWristPosition(double position) {
+  private int position;
+  public SetWristPosition(int position) {
     requires(Robot.wrist);
     this.position = position;
     // Use requires() here to declare subsystem dependencies
@@ -23,12 +23,13 @@ public class SetWristPosition extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    Robot.wrist.setSP(position);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.wrist.setPosition(position);
+    Robot.wrist.setPosition();
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -40,7 +41,6 @@ public class SetWristPosition extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.wrist.set(0);
   }
 
   // Called when another command which requires one or more of the same

@@ -22,19 +22,16 @@ public class OI {
   public Joystick joystick2;
  public  Button followLine;
  Button upWrist;
- Button middleWrist;
  Button lowerWrist;
   public OI()
   {
     joystick1 = new Joystick(0);
     joystick2 = new Joystick(1);
     followLine = new JoystickButton(joystick1, 2);
-    upWrist = new JoystickButton(joystick1, 7);
-    middleWrist = new JoystickButton(joystick1, 9);
-    lowerWrist = new JoystickButton(joystick1, 11);
+    upWrist = new JoystickButton(joystick1, 5);
+    lowerWrist = new JoystickButton(joystick1, 3);
 
     upWrist.whileHeld(new SetWristPosition(Wrist.up));
-    middleWrist.whileHeld(new SetWristPosition(Wrist.MIDDLE));
     lowerWrist.whileHeld(new SetWristPosition(Wrist.DOWN));
   }
   //// CREATING BUTTONS

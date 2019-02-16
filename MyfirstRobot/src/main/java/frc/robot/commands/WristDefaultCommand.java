@@ -25,6 +25,7 @@ public class WristDefaultCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    Robot.wrist.setPosition();
 //   Robot.wrist.set(Robot.m_oi.joystick1.getRawAxis(1));
    
     
