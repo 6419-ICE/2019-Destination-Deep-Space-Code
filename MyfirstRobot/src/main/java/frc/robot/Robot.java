@@ -12,11 +12,11 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-<<<<<<< HEAD
+
 import frc.robot.subsystems.Wrist;
-=======
+
 import frc.robot.subsystems.Chassis;
->>>>>>> master
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -26,13 +26,9 @@ import frc.robot.subsystems.Chassis;
  * project.
  */
 public class Robot extends TimedRobot {
-<<<<<<< HEAD
-public static   OI m_oi;
   public static Wrist wrist;
-=======
   public static Chassis chassis;
   public static  OI m_oi;
->>>>>>> master
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -42,22 +38,16 @@ public static   OI m_oi;
    */
   @Override
   public void robotInit() {
-<<<<<<< HEAD
     wrist = new Wrist();
-=======
     chassis = new Chassis();
->>>>>>> master
       //IMPORTANT: INITIALIZE OI AFTER SUBSYSTEMS
     m_oi = new OI();
 
 
    // mChassis = new MecchanumChassis();
     m_chooser.setDefaultOption("Default Auto", null);
-<<<<<<< HEAD
     
     // chooser.addOption("My Auto", new MyAutoCommand());
-=======
->>>>>>> master
     SmartDashboard.putData("Auto mode", m_chooser);
   
   }
