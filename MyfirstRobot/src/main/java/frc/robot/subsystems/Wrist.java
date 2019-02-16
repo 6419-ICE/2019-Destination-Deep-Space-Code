@@ -59,7 +59,6 @@ public class Wrist extends Subsystem {
   public void setPosition()
   {
     if(!Util.withinRange(sp - 7, sp + 7, this.position)) {
-      double speed;
       if(sp < this.position) direction = -1;
       else direction = 1;
       this.set(direction);
