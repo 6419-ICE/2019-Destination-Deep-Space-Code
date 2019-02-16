@@ -15,6 +15,7 @@ public class SetWristPosition extends Command {
   private double position;
   public SetWristPosition(double position) {
     requires(Robot.wrist);
+    this.position = position;
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -33,17 +34,19 @@ public class SetWristPosition extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Util.withinRange(position - 3, position + 3, Robot.wrist.getPosition());
+    return false;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.wrist.set(0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    end();
   }
 }

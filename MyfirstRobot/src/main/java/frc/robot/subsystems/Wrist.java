@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.Counter;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
+import frc.robot.Util;
 import frc.robot.commands.WristDefaultCommand;
 
 /**
@@ -42,7 +43,6 @@ public class Wrist extends Subsystem {
    int  delta = (count - prevPos) * direction;
    delta = Math.abs(delta) > 10 ? 0:delta;
     position += delta;
-    System.out.println("delta: " + delta +" position: " +position);
     prevPos = count;
 
   }
@@ -59,9 +59,14 @@ public class Wrist extends Subsystem {
   }
   public void setPosition(double position)
   {
-    System.out.println("wrist holding position");
-
-    motor.set(ControlMode.PercentOutput, position < this.position ? -1: 1);
+    if(!Util.withinRange(position - 7, position + 7, this.position)) {
+      System.out.println("set position: " + position + " current position: " + this.position);
+       this.set( position < this.position  ? -.9: .9);
+    }
+     else
+    {
+          motor.set(ControlMode.PercentOutput, 0);
+    }
   }
 
 

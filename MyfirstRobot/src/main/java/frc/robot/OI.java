@@ -33,9 +33,9 @@ public class OI {
     middleWrist = new JoystickButton(joystick1, 9);
     lowerWrist = new JoystickButton(joystick1, 11);
 
-    upWrist.whenReleased(new SetWristPosition(Wrist.up));
-    middleWrist.whenReleased(new SetWristPosition(Wrist.MIDDLE));
-    lowerWrist.whenReleased(new SetWristPosition(Wrist.DOWN));
+    upWrist.whileHeld(new SetWristPosition(Wrist.up));
+    middleWrist.whileHeld(new SetWristPosition(Wrist.MIDDLE));
+    lowerWrist.whileHeld(new SetWristPosition(Wrist.DOWN));
   }
   //// CREATING BUTTONS
   // One type of button is a joystick button which is any button on a
