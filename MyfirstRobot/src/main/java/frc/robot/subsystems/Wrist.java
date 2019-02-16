@@ -17,6 +17,7 @@ import frc.robot.RobotMap;
  * Add your docs here.
  */
 public class Wrist extends Subsystem {
+  private double targetPosition;
   private VictorSPX motor;
   public static int DOWN = 0;
   public static int MIDDLE = 1000;
@@ -38,6 +39,15 @@ public class Wrist extends Subsystem {
   }
   public void setPosition()
   {
-    
+    motor.set(ControlMode.Position, targetPosition);
   }
+  public void setTargetPosition(double pos)
+  {
+    targetPosition = pos;
+  }
+  public double getTargetPosition()
+  {
+    return targetPosition;
+  }
+  
 }
