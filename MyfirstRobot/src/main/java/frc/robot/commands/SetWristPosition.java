@@ -9,10 +9,13 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.Util;
 
-public class TestBumpSwitch extends Command {
-  public TestBumpSwitch() {
-    requires(Robot.chassis);
+public class SetWristPosition extends Command {
+  private int position;
+  public SetWristPosition(int position) {
+    requires(Robot.wrist);
+    this.position = position;
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -20,12 +23,13 @@ public class TestBumpSwitch extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    Robot.wrist.setSP(position);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    System.out.println(Robot.chassis.touchingWall());
+    Robot.wrist.setPosition();
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -43,5 +47,6 @@ public class TestBumpSwitch extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    end();
   }
 }

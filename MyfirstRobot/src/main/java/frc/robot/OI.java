@@ -10,7 +10,8 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.FollowLine;
+import frc.robot.commands.SetWristPosition;
+import frc.robot.subsystems.Wrist;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -19,13 +20,19 @@ import frc.robot.commands.FollowLine;
 public class OI {
   public Joystick joystick1;
   public Joystick joystick2;
-  Button followLine;
+ public  Button followLine;
+ Button upWrist;
+ Button lowerWrist;
   public OI()
   {
     joystick1 = new Joystick(0);
     joystick2 = new Joystick(1);
     followLine = new JoystickButton(joystick1, 2);
-    followLine.whileActive(new FollowLine());
+    upWrist = new JoystickButton(joystick1, 5);
+    lowerWrist = new JoystickButton(joystick1, 3);
+
+    upWrist.whileHeld(new SetWristPosition(Wrist.up));
+    lowerWrist.whileHeld(new SetWristPosition(Wrist.DOWN));
   }
   //// CREATING BUTTONS
   // One type of button is a joystick button which is any button on a
