@@ -7,12 +7,20 @@
 
 package frc.robot.commands;
 
+
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class WristDefaultCommand extends Command {
-  public WristDefaultCommand() {
-    requires(Robot.wrist);
+public class TurnDegrees extends Command {
+  private Timer time;
+  private int counter;
+  private double timeout;
+  private double setpoint;
+  public TurnDegrees(double degrees, double timeout) {
+    requires(Robot.chassis);
+    this.setpoint = degrees;
+    this.timeout = timeout;
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -20,31 +28,41 @@ public class WristDefaultCommand extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    time = new Timer();
+    counter = 0;
+    Robot.chassis.startTurnPid(setpoint);
+    time.start();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.wrist.setPosition();
-//   Robot.wrist.set(Robot.m_oi.joystick1.getRawAxis(1));
-   
-    
+    if(Robot.chassis.turnPid.onTarget())
+    {
+      counter++;
+    }
+    else{
+      counter = 0;
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+
+    return (counter > 2 && Robot.chassis.turnPid.onTarget()) || time.get() > this.timeout;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.chassis.drive(0, 0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    end();
   }
 }
