@@ -25,8 +25,6 @@ public class FrontClimber extends Subsystem {
   {
     front = new VictorSP(RobotMap.FRONT_CLIMBER);
     frontSwitch = new LimitSwitch(RobotMap.FRONT_CLIMBER_BUMP);
-  //TODO make the motors stay in brake mode by pushing their button.
-    //TODO Set the directions of the motors
 }
   
   // Put methods for controlling this subsystem

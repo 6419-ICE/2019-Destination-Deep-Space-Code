@@ -24,7 +24,6 @@ public class BackClimber extends Subsystem {
     {
       motor = new VictorSP(RobotMap.BACK_CLIMBER);
       backSwitch = new LimitSwitch(RobotMap.BACK_CLIMBER_BUMP);
-      //TODO may need to reverse the motor.
     }
 
   // Put methods for controlling this subsystem
