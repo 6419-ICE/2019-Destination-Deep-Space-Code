@@ -60,7 +60,6 @@ public class Chassis extends Subsystem implements PIDOutput {
 
   @Override
   public void initDefaultCommand() {
-    //TODO Set default command back to driving.
     setDefaultCommand(new HandleDrive());
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());

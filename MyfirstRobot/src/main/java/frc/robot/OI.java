@@ -12,6 +12,8 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.SetWristPosition;
 import frc.robot.subsystems.Wrist;
+import frc.robot.commands.SpinBallIntake;
+import frc.robot.commands.FollowLine;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -23,10 +25,16 @@ public class OI {
  public  Button followLine;
  Button upWrist;
  Button lowerWrist;
+  private Button succ;
+  private Button blow;
   public OI()
   {
     joystick1 = new Joystick(0);
-    joystick2 = new Joystick(1);
+ //   joystick2 = new Joystick(1);
+    succ = new JoystickButton(joystick1, 4);
+    blow = new JoystickButton(joystick1, 6);
+    succ.whileHeld(new SpinBallIntake(.7, 0));
+    blow.whileHeld(new SpinBallIntake(-.7, 0));
     followLine = new JoystickButton(joystick1, 2);
     upWrist = new JoystickButton(joystick1, 5);
     lowerWrist = new JoystickButton(joystick1, 3);
@@ -34,34 +42,5 @@ public class OI {
     upWrist.whileHeld(new SetWristPosition(Wrist.up));
     lowerWrist.whileHeld(new SetWristPosition(Wrist.DOWN));
   }
-  //// CREATING BUTTONS
-  // One type of button is a joystick button which is any button on a
-  //// joystick.
-  // You create one by telling it which joystick it's on and which button
-  // number it is.
-  // Joystick stick = new Joystick(port);
-  // Button button = new JoystickButton(stick, buttonNumber);
-
-  // There are a few additional built in buttons you can use. Additionally,
-  // by subclassing Button you can create custom triggers and bind those to
-  // commands the same as any other Button.
-
-  //// TRIGGERING COMMANDS WITH BUTTONS
-  // Once you have a button, it's trivial to bind it to a button in one of
-  // three ways:
-
-  // Start the command when the button is pressed and let it run the command
-  // until it is finished as determined by it's isFinished method.
-  // button.whenPressed(new ExampleCommand());
-
-  // Run the command while the button is being held down and interrupt it once
-  // the button is released.
-  // button.whileHeld(new ExampleCommand());
-
-  // Start the command when the button is released and let it run the command
-  // until it is finished as determined by it's isFinished method.
-  // button.whenReleased(new ExampleCommand());
-
-
 
 }
