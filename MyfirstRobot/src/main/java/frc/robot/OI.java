@@ -10,7 +10,11 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+<<<<<<< HEAD
 import frc.robot.commands.SpinBallIntake;
+=======
+import frc.robot.commands.FollowLine;
+>>>>>>> master
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -19,6 +23,7 @@ import frc.robot.commands.SpinBallIntake;
 public class OI {
   public Joystick joystick1;
   public Joystick joystick2;
+<<<<<<< HEAD
   private Button succ;
   private Button blow;
   public OI()
@@ -30,6 +35,15 @@ public class OI {
     succ.whileHeld(new SpinBallIntake(.7, 0));
     blow.whileHeld(new SpinBallIntake(-.7, 0));
 
+=======
+  Button followLine;
+  public OI()
+  {
+    joystick1 = new Joystick(0);
+    joystick2 = new Joystick(1);
+    followLine = new JoystickButton(joystick1, 2);
+    followLine.whileActive(new FollowLine());
+>>>>>>> master
   }
   //// CREATING BUTTONS
   // One type of button is a joystick button which is any button on a
