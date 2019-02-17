@@ -59,8 +59,8 @@ public class FollowLine extends Command {
   else
   {
   Robot.chassis.drive(0, 0);
+  
   }
-  //TODO Spit out da ball
   }
 
   // Make this return true when this Command no longer needs to run execute()

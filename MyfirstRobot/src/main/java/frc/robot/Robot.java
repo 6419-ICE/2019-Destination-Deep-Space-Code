@@ -12,11 +12,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-<<<<<<< HEAD
 import frc.robot.subsystems.BallIntake;
-=======
 import frc.robot.subsystems.Chassis;
->>>>>>> master
 
 /**
  * The VM is configured to automatically run this class, and to call the
