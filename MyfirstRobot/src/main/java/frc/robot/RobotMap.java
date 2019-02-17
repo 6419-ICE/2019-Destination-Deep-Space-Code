@@ -27,14 +27,7 @@ public static int BACK_LEFT_DRIVE = 2;
 public static int BACK_RIGHT_DRIVE = 3;
 //Sensors
 public static int LINE_SENSOR = 5; 
-<<<<<<< HEAD
 public static int BALL_INTAKE = 10;
-=======
-public static int BALL_INTAKE = 6;
-public static int BUMP_SWITCH = 0;
-
-
->>>>>>> master
 
   // For example to map the left and right motors, you could define the
   // following variables to use with your drivetrain subsystem.
