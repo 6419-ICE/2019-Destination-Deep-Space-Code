@@ -12,7 +12,11 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+<<<<<<< HEAD
+import frc.robot.subsystems.BallIntake;
+=======
 import frc.robot.subsystems.Chassis;
+>>>>>>> master
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -25,6 +29,7 @@ public class Robot extends TimedRobot {
   public static Chassis chassis;
   public static  OI m_oi;
   Command m_autonomousCommand;
+  public static BallIntake ballIntake;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   /**
@@ -33,6 +38,11 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+
+    ballIntake = new BallIntake();    
+
+    m_oi = new OI();
+    // chooser.addOption("My Auto", new MyAutoCommand());
     chassis = new Chassis();
       //IMPORTANT: INITIALIZE OI AFTER SUBSYSTEMS
     m_oi = new OI();
