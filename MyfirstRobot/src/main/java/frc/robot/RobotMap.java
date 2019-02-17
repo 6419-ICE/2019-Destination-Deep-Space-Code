@@ -28,6 +28,7 @@ public static int BACK_RIGHT_DRIVE = 3;
 //Sensors
 public static int BALL_INTAKE = 6;
 public static int BUMP_SWITCH = 0;
+<<<<<<< HEAD
 public static final int LINE_SENSOR1 = 0;
 public static final int LINE_SENSOR2 = 1;
 public static final int LINE_SENSOR3 = 2;
@@ -35,6 +36,10 @@ public static final int LINE_SENSOR3 = 2;
 
 public static int FRONT_CLIMBER_BUMP = 3;
 public static int BACK_CLIMBER_BUMP = 4;
+=======
+public static int WRIST = 10;
+public static int WRIST_ENCODER = 0;
+>>>>>>> master
 
 
 

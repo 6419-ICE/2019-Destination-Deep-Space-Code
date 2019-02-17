@@ -12,9 +12,17 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+<<<<<<< HEAD
 import frc.robot.subsystems.BackClimber;
+=======
+
+import frc.robot.subsystems.Wrist;
+
+import frc.robot.subsystems.BallIntake;
+>>>>>>> master
 import frc.robot.subsystems.Chassis;
 import frc.robot.subsystems.FrontClimber;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -24,11 +32,13 @@ import frc.robot.subsystems.FrontClimber;
  * project.
  */
 public class Robot extends TimedRobot {
+  public static Wrist wrist;
   public static Chassis chassis;
   public static FrontClimber frontClimber;
   public static BackClimber backClimber;
   public static  OI m_oi;
   Command m_autonomousCommand;
+  public static BallIntake ballIntake;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   /**
@@ -37,6 +47,12 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    wrist = new Wrist();
+
+    ballIntake = new BallIntake();    
+
+    m_oi = new OI();
+    // chooser.addOption("My Auto", new MyAutoCommand());
     chassis = new Chassis();
     frontClimber = new FrontClimber();
     backClimber = new BackClimber();
@@ -46,6 +62,8 @@ public class Robot extends TimedRobot {
 
    // mChassis = new MecchanumChassis();
     m_chooser.setDefaultOption("Default Auto", null);
+    
+    // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
   
   }
