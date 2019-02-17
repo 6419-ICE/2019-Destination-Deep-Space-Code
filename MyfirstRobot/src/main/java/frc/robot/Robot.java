@@ -12,14 +12,11 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-<<<<<<< HEAD
 import frc.robot.subsystems.BackClimber;
-=======
 
 import frc.robot.subsystems.Wrist;
 
 import frc.robot.subsystems.BallIntake;
->>>>>>> master
 import frc.robot.subsystems.Chassis;
 import frc.robot.subsystems.FrontClimber;
 

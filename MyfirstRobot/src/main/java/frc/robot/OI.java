@@ -13,12 +13,9 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.subsystems.Wrist;
 import frc.robot.commands.SpinBallIntake;
 import frc.robot.commands.FollowLine;
-<<<<<<< HEAD
 import frc.robot.commands.RaiseBackClimber;
 import frc.robot.commands.RaiseFrontClimber;
-=======
 import frc.robot.commands.SetWristPosition;
->>>>>>> master
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -27,19 +24,15 @@ import frc.robot.commands.SetWristPosition;
 public class OI {
   public Joystick joystick1;
   public Joystick joystick2;
-<<<<<<< HEAD
   Button followLine;
   Button raiseFront;
   Button raiseBack;
   Button lowerFront;
   Button  lowerBack;
-=======
- public  Button followLine;
  Button upWrist;
  Button lowerWrist;
   private Button succ;
   private Button blow;
->>>>>>> master
   public OI()
   {
     joystick1 = new Joystick(0);
@@ -48,9 +41,7 @@ public class OI {
     blow = new JoystickButton(joystick1, 6);
     succ.whileHeld(new SpinBallIntake(.7, 0));
     blow.whileHeld(new SpinBallIntake(-.7, 0));
-    followLine = new JoystickButton(joystick1, 2);
-<<<<<<< HEAD
-    followLine.whileActive(new FollowLine());
+
     
     raiseFront = new JoystickButton(joystick2, 1);
     lowerFront = new JoystickButton(joystick2, 2);
@@ -61,13 +52,14 @@ public class OI {
     lowerFront.whileHeld(new RaiseFrontClimber(ClimberDirection.DOWN));
     raiseBack.whileHeld(new RaiseBackClimber(ClimberDirection.UP));
     lowerBack.whileHeld(new RaiseBackClimber(ClimberDirection.DOWN));
-=======
     upWrist = new JoystickButton(joystick1, 5);
     lowerWrist = new JoystickButton(joystick1, 3);
-    followLine.whileHeld(new FollowLine());
     upWrist.whileHeld(new SetWristPosition(Wrist.up));
     lowerWrist.whileHeld(new SetWristPosition(Wrist.DOWN));
->>>>>>> master
+
+    followLine = new JoystickButton(joystick1, 2);
+    followLine.whileHeld(new FollowLine());
+
   }
 
 }
