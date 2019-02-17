@@ -10,8 +10,10 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.subsystems.Wrist;
 import frc.robot.commands.SpinBallIntake;
 import frc.robot.commands.FollowLine;
+import frc.robot.commands.SetWristPosition;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -20,9 +22,11 @@ import frc.robot.commands.FollowLine;
 public class OI {
   public Joystick joystick1;
   public Joystick joystick2;
+ public  Button followLine;
+ Button upWrist;
+ Button lowerWrist;
   private Button succ;
   private Button blow;
-  Button followLine;
   public OI()
   {
     joystick1 = new Joystick(0);
@@ -32,7 +36,11 @@ public class OI {
     succ.whileHeld(new SpinBallIntake(.7, 0));
     blow.whileHeld(new SpinBallIntake(-.7, 0));
     followLine = new JoystickButton(joystick1, 2);
-    followLine.whileActive(new FollowLine());
+    upWrist = new JoystickButton(joystick1, 5);
+    lowerWrist = new JoystickButton(joystick1, 3);
+    followLine.whileHeld(new FollowLine());
+    upWrist.whileHeld(new SetWristPosition(Wrist.up));
+    lowerWrist.whileHeld(new SetWristPosition(Wrist.DOWN));
   }
 
 }
