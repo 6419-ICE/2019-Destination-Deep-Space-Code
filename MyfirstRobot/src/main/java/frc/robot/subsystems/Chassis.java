@@ -116,17 +116,10 @@ public class Chassis extends Subsystem implements PIDOutput {
   }
   public DirectionEnum directionToTurn()
   {
-    System.out.print("left\t");
     boolean left = getLeft();
-    System.out.print(left +" \t");
-    System.out.print("center\t");
     boolean center = getCenter();
-    System.out.print(center +" \t");
-
-    System.out.print("right\t");
     boolean right = getRight();
-    System.out.print(right +" \t");
-    System.out.println();
+  
 
     if(left && ! right)
     {
