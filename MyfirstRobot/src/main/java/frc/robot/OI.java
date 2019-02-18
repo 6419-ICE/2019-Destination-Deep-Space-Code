@@ -30,14 +30,20 @@ public class OI {
   public OI()
   {
     joystick1 = new Joystick(0);
- //   joystick2 = new Joystick(1);
+    joystick2 = new Joystick(1);
+
+ //initialize the buttons
     succ = new JoystickButton(joystick1, 4);
     blow = new JoystickButton(joystick1, 6);
-    succ.whileHeld(new SpinBallIntake(.7, 0));
-    blow.whileHeld(new SpinBallIntake(-.7, 0));
-    followLine = new JoystickButton(joystick1, 2);
+
     upWrist = new JoystickButton(joystick1, 5);
     lowerWrist = new JoystickButton(joystick1, 3);
+    
+    followLine = new JoystickButton(joystick1, 2);
+
+    //Set actions for buttons
+    succ.whileHeld(new SpinBallIntake(.7, 0));
+    blow.whileHeld(new SpinBallIntake(-.7, 0));
     followLine.whileHeld(new FollowLine());
     upWrist.whileHeld(new SetWristPosition(Wrist.up));
     lowerWrist.whileHeld(new SetWristPosition(Wrist.DOWN));

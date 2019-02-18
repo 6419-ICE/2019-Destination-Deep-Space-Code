@@ -28,7 +28,6 @@ public BallIntake()
 }
 public void set(double input)
 {
-  System.out.println("set" +input);
   intake.set(ControlMode.PercentOutput, input);
 }
   @Override
