@@ -30,7 +30,7 @@ public class OI {
   public OI()
   {
     joystick1 = new Joystick(0);
- //   joystick2 = new Joystick(1);
+    joystick2 = new Joystick(1);
 
  //initialize the buttons
     succ = new JoystickButton(joystick1, 4);
