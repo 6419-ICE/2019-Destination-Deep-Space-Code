@@ -34,7 +34,7 @@ public class BackClimber extends Subsystem {
 
   public void holdPosition()
   {
-    motor.set(ControlMode.PercentOutput, 0);
+    motor.set(ControlMode.Velocity, 0);
   }
   public void set(double power)
   {
@@ -49,7 +49,7 @@ public class BackClimber extends Subsystem {
   {
     if(!backSwitch.getPressed())
     {
-      motor.set(ControlMode.PercentOutput, direction.getValue());
+      motor.set(ControlMode.Velocity, direction.getValue());
       raised = false;
     }
     else{
