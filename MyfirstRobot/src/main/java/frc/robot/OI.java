@@ -13,8 +13,6 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.subsystems.Wrist;
 import frc.robot.commands.SpinBallIntake;
 import frc.robot.commands.FollowLine;
-import frc.robot.commands.RaiseBackClimber;
-import frc.robot.commands.RaiseFrontClimber;
 import frc.robot.commands.SetWristPosition;
 
 /**
