@@ -36,7 +36,7 @@ public static final int LINE_SENSOR3 = 2;
 public static int FRONT_CLIMBER_BUMP = 3;
 public static int BACK_CLIMBER_BUMP = 4;
 public static int WRIST = 10;
-public static int WRIST_ENCODER = 0;
+public static int WRIST_ENCODER = 1;
 
 
 

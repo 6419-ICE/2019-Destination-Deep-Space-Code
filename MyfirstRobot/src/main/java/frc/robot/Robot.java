@@ -48,7 +48,6 @@ public class Robot extends TimedRobot {
 
     ballIntake = new BallIntake();    
 
-    m_oi = new OI();
     // chooser.addOption("My Auto", new MyAutoCommand());
     chassis = new Chassis();
     frontClimber = new FrontClimber();
