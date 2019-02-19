@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj.Counter;
@@ -22,7 +23,7 @@ import frc.robot.commands.WristDefaultCommand;
  */
 public class Wrist extends Subsystem {
   private Counter motorcounter;
-  private VictorSPX motor;
+  private TalonSRX motor;
   public static int DOWN = 0;
   public static int up = 30;
   private int direction;
@@ -31,7 +32,7 @@ public class Wrist extends Subsystem {
   private int sp = 0;
   public Wrist()
   {
-    motor = new VictorSPX(RobotMap.WRIST);
+    motor = new TalonSRX(RobotMap.WRIST);
     motorcounter = new Counter(new DigitalInput(RobotMap.WRIST_ENCODER));
     
   }

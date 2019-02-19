@@ -7,6 +7,10 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.ClimberDirection;
@@ -17,14 +21,15 @@ import frc.robot.commands.HandleFrontClimber;
  * Add your docs here.
  */
 public class FrontClimber extends Subsystem {
-  private VictorSP front;
+  private TalonSRX front;
   private LimitSwitch frontSwitch;
   private boolean raised = false;
 
   public FrontClimber()
   {
-    front = new VictorSP(RobotMap.FRONT_CLIMBER);
+    front = new TalonSRX(RobotMap.FRONT_CLIMBER);
     frontSwitch = new LimitSwitch(RobotMap.FRONT_CLIMBER_BUMP);
+    
 }
   
   // Put methods for controlling this subsystem
@@ -40,7 +45,7 @@ public class FrontClimber extends Subsystem {
   {
     if(!frontSwitch.getPressed())
       {
-        front.setSpeed(direction.getValue());
+        front.set(ControlMode.PercentOutput ,direction.getValue());
         raised = false;
         return false;
       }
@@ -52,11 +57,11 @@ public class FrontClimber extends Subsystem {
 
   public void holdPosition()
   {
-    front.setSpeed(0);
+    front.set(ControlMode.PercentOutput, 0);
   }
   public void set(double speed)
   {
-    front.set(speed);
+    front.set(ControlMode.PercentOutput, speed);
   }
   public boolean getRaised()
   {

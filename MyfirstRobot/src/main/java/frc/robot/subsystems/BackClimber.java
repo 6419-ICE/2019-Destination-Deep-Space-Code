@@ -7,6 +7,9 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.ClimberDirection;
@@ -17,12 +20,12 @@ import frc.robot.commands.HandleBackClimber;
  * Add your docs here.
  */
 public class BackClimber extends Subsystem {
-    private VictorSP motor;
+    private TalonSRX motor;
     private boolean raised = false;
     private LimitSwitch backSwitch;
     public BackClimber()
     {
-      motor = new VictorSP(RobotMap.BACK_CLIMBER);
+      motor = new TalonSRX(RobotMap.BACK_CLIMBER);
       backSwitch = new LimitSwitch(RobotMap.BACK_CLIMBER_BUMP);
     }
 
@@ -31,11 +34,11 @@ public class BackClimber extends Subsystem {
 
   public void holdPosition()
   {
-    motor.setSpeed(0);
+    motor.set(ControlMode.PercentOutput, 0);
   }
   public void set(double power)
   {
-    motor.set(power);
+    motor.set(ControlMode.PercentOutput, power);
   }
   @Override
   public void initDefaultCommand()
@@ -46,7 +49,7 @@ public class BackClimber extends Subsystem {
   {
     if(!backSwitch.getPressed())
     {
-      motor.setSpeed(direction.getValue());
+      motor.set(ControlMode.PercentOutput, direction.getValue());
       raised = false;
     }
     else{
