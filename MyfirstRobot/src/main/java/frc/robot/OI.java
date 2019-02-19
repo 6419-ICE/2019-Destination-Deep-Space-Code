@@ -41,23 +41,6 @@ public class OI {
  //initialize the buttons
     succ = new JoystickButton(joystick1, 4);
     blow = new JoystickButton(joystick1, 6);
-<<<<<<< HEAD
-    succ.whileHeld(new SpinBallIntake(.7, 0));
-    blow.whileHeld(new SpinBallIntake(-.7, 0));
-
-    
-    raiseFront = new JoystickButton(joystick2, 1);
-    lowerFront = new JoystickButton(joystick2, 2);
-    raiseBack = new JoystickButton(joystick2, 3);
-    lowerBack = new JoystickButton(joystick2, 4);
-
-    raiseFront.whileHeld(new RaiseFrontClimber(ClimberDirection.UP));
-    lowerFront.whileHeld(new RaiseFrontClimber(ClimberDirection.DOWN));
-    raiseBack.whileHeld(new RaiseBackClimber(ClimberDirection.UP));
-    lowerBack.whileHeld(new RaiseBackClimber(ClimberDirection.DOWN));
-    upWrist = new JoystickButton(joystick1, 5);
-    lowerWrist = new JoystickButton(joystick1, 3);
-=======
 
     upWrist = new JoystickButton(joystick1, 5);
     lowerWrist = new JoystickButton(joystick1, 3);
@@ -68,7 +51,6 @@ public class OI {
     succ.whileHeld(new SpinBallIntake(.7, 0));
     blow.whileHeld(new SpinBallIntake(-.7, 0));
     followLine.whileHeld(new FollowLine());
->>>>>>> master
     upWrist.whileHeld(new SetWristPosition(Wrist.up));
     lowerWrist.whileHeld(new SetWristPosition(Wrist.DOWN));
 
