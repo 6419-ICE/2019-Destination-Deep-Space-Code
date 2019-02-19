@@ -16,14 +16,14 @@ public enum ClimberDirection {
         @Override
         public double getValue()
         {
-            return -.4d;
+            return .6;
         }
     },
     UP{
         @Override
         public double getValue()
         {
-            return .4d;
+            return -.6;
         }
 
     };
