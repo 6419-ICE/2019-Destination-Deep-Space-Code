@@ -29,6 +29,9 @@ public class RaiseBackClimber extends Command {
   @Override
   protected void execute() {
     Robot.backClimber.raiseClimber(direction);
+    // System.out.println("\t" +Robot.chassis.getX());
+    // System.out.println("\t" +Robot.chassis.getY());
+    // System.out.println("\t" +Robot.chassis.getZ());
   }
 
   // Make this return true when this Command no longer needs to run execute()

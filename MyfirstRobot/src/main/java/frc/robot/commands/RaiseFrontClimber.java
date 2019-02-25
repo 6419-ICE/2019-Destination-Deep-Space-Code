@@ -16,6 +16,7 @@ public class RaiseFrontClimber extends Command {
 
   public RaiseFrontClimber(ClimberDirection direction) {
     requires(Robot.frontClimber);
+
     this.direction = direction;
     
     // Use requires() here to declare subsystem dependencies

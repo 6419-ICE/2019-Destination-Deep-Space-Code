@@ -9,9 +9,7 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
-import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.ClimberDirection;
 import frc.robot.RobotMap;
@@ -45,7 +43,7 @@ public class FrontClimber extends Subsystem {
   {
     if(!frontSwitch.getPressed())
       {
-        front.set(ControlMode.PercentOutput ,direction.getValue());
+        front.set(ControlMode.PercentOutput ,direction.getValue()-.1);
         raised = false;
         return false;
       }
