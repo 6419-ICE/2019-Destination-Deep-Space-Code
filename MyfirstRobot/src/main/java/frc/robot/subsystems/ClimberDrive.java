@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -20,8 +21,14 @@ public class ClimberDrive extends Subsystem {
 
   public ClimberDrive()
   {
-    frontMotor = new TalonSRX(RobotMap.);
-    backMotor = new TalonSRX(RobotMap.)
+    frontMotor = new TalonSRX(RobotMap.FRONT_CLIMBER_DRIVE);
+    backMotor = new TalonSRX(RobotMap.BACK_CLIMBER_DRIVE);
+  }
+
+  public void set(double speed)
+  {
+    frontMotor.set(ControlMode.PercentOutput, speed);
+    backMotor.set(ControlMode.PercentOutput, speed);
   }
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
