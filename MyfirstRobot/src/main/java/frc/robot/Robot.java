@@ -17,6 +17,7 @@ import frc.robot.subsystems.Wrist;
 
 import frc.robot.subsystems.BallIntake;
 import frc.robot.subsystems.Chassis;
+import frc.robot.subsystems.ClimberDrive;
 
 
 /**
@@ -27,6 +28,7 @@ import frc.robot.subsystems.Chassis;
  * project.
  */
 public class Robot extends TimedRobot {
+  public static ClimberDrive climberDrive;
   public static Wrist wrist;
   public static Chassis chassis;
   public static  OI m_oi;
@@ -41,7 +43,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     wrist = new Wrist();
-
+    climberDrive = new ClimberDrive();
     ballIntake = new BallIntake();    
 
     // chooser.addOption("My Auto", new MyAutoCommand());
