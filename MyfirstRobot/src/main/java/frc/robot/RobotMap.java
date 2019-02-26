@@ -25,6 +25,10 @@ public static int FRONT_LEFT_DRIVE = 0;
 public static int FRONT_RIGHT_DRIVE = 1;
 public static int BACK_LEFT_DRIVE = 2;
 public static int BACK_RIGHT_DRIVE = 3;
+public static int FRONT_CLIMBER_DRIVE = 11;
+public static int BACK_CLIMBER_DRIVE = 12;
+
+
 //Sensors
 public static int LINE_SENSOR = 5; 
 public static int BALL_INTAKE = 6;
