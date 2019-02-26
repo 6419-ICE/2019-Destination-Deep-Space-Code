@@ -8,10 +8,14 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.DirectionEnum;
+import frc.robot.ClimberDriveDirection;
+import frc.robot.Robot;
 
 public class MoveClimberForward extends Command {
-  public MoveClimberForward(DirectionEnum direciton) {
+  double power;
+  public MoveClimberForward(ClimberDriveDirection direction) {
+    requires(Robot.climberDrive);
+    power = direction.getValue();
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -24,12 +28,13 @@ public class MoveClimberForward extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    Robot.climberDrive.set(power);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return true;
   }
 
   // Called once after isFinished returns true
