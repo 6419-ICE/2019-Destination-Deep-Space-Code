@@ -10,6 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.buttons.Trigger;
 import frc.robot.subsystems.Wrist;
 import frc.robot.commands.SpinBallIntake;
 import frc.robot.commands.FollowLine;
@@ -23,6 +24,8 @@ public class OI {
   public Joystick joystick1;
   public Joystick joystick2;
  public  Button followLine;
+ public Trigger climberForward;
+ public Trigger climberBackward;
  Button upWrist;
  Button lowerWrist;
   private Button succ;
@@ -47,6 +50,26 @@ public class OI {
     followLine.whileHeld(new FollowLine());
     upWrist.whileHeld(new SetWristPosition(Wrist.up));
     lowerWrist.whileHeld(new SetWristPosition(Wrist.DOWN));
+
+
+    //Custom triggers
+    climberForward = new Trigger(){
+    
+      @Override
+      public boolean get() {
+        return joystick1.getPOV() == 0;
+      }
+    };
+    climberBackward = new Trigger(){
+    
+      @Override
+      public boolean get() {
+        {
+          return joystick1.getPOV() == 180;
+        }
+      }
+    };
+
   }
 
 }
