@@ -65,6 +65,21 @@ public class Chassis extends Subsystem implements PIDOutput {
     // setDefaultCommand(new MySpecialCommand());
   }
 
+//gyro crap
+public double getZ()
+{
+  return gyro.getAngleZ();
+}
+public double getY()
+{
+  return gyro.getAngleY();
+}
+public double getX()
+{
+  return gyro.getAngleX();
+}
+
+
   public void setPid() {
     turnPid.setInputRange(-179, 179);
     turnPid.setP(kP);
@@ -86,6 +101,7 @@ public class Chassis extends Subsystem implements PIDOutput {
   {
     return bumpSwitch.getPressed();
   }
+  
 
   /**
    * Drives the robot using raw power.

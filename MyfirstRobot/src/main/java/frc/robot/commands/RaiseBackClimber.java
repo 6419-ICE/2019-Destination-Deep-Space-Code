@@ -8,63 +8,46 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.ClimberDirection;
 import frc.robot.Robot;
 
-public class HandleDrive extends Command 
-{
-  public HandleDrive() 
-  {
-    requires(Robot.chassis);
+public class RaiseBackClimber extends Command {
+  ClimberDirection direction;
+  public RaiseBackClimber(ClimberDirection direction) {
+    requires(Robot.backClimber);
+    this.direction = direction;
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
 
   // Called just before this Command runs the first time
   @Override
-  protected void initialize() 
-  {
-
+  protected void initialize() {
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
-  protected void execute()
-  {
-    double left = -Robot.m_oi.joystick1.getRawAxis(1);
-    double right = -Robot.m_oi.joystick2.getRawAxis(1);
-    // left = Math.min(Math.max(-1, left), 1);
-    // right = Math.min(Math.max(-1, right), 1);
-    left = Math.max(-1, left);
-    left = Math.min(1, left);
-    right = Math.max(-1, right);
-    right = Math.min(1, right);
-    double signLeft = left < 0 ? -1:1;
-    double signRight = right < 0 ? -1:1;
-    left = left*left*signLeft;
-    right = right*right*signRight;
-    Robot.chassis.drive(left, right);
-  
+  protected void execute() {
+    Robot.backClimber.raiseClimber(direction);
+    // System.out.println("\t" +Robot.chassis.getX());
+    // System.out.println("\t" +Robot.chassis.getY());
+    // System.out.println("\t" +Robot.chassis.getZ());
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
-  protected boolean isFinished()
-  {
-    return false;
+  protected boolean isFinished() {
+    return true;
   }
 
   // Called once after isFinished returns true
   @Override
-  protected void end()
-  {
-
+  protected void end() {
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
-  protected void interrupted() 
-  {
-    end();
+  protected void interrupted() {
   }
 }
