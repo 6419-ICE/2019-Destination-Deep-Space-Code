@@ -11,9 +11,11 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.Trigger;
+import frc.robot.subsystems.ClimberDrive;
 import frc.robot.subsystems.Wrist;
 import frc.robot.commands.SpinBallIntake;
 import frc.robot.commands.FollowLine;
+import frc.robot.commands.MoveClimberForward;
 import frc.robot.commands.SetWristPosition;
 
 /**
@@ -70,6 +72,7 @@ public class OI {
       }
     };
 
-    // Triggers actions
+    // Triggers actions\
+  climberForward.whileActive(new MoveClimberForward(ClimberDriveDirection.FORWARDS));
   }
 }

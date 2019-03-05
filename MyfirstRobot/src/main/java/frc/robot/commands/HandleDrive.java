@@ -35,6 +35,7 @@ public class HandleDrive extends Command {
     right = Math.min(1, right);
     double signLeft = left < 0 ? -1:1;
     double signRight = right < 0? -1:1;
+  
     left = left*left*signLeft;
     right = right*right*signRight;
     Robot.chassis.drive(left, right);
