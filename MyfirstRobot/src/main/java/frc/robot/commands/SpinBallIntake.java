@@ -20,8 +20,6 @@ public class SpinBallIntake extends Command {
     requires(Robot.ballIntake);
     this.power = power;
     this.duration = duration;
-        // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
   }
 
   // Called just before this Command runs the first time
