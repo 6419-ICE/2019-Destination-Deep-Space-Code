@@ -54,6 +54,7 @@ public class Robot extends TimedRobot {
 
    // mChassis = new MecchanumChassis();
     m_chooser.setDefaultOption("Default Auto", null);
+   
     
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
