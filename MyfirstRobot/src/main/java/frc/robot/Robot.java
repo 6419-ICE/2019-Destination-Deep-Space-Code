@@ -12,11 +12,13 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.subsystems.BackClimber;
 
 import frc.robot.subsystems.Wrist;
 
 import frc.robot.subsystems.BallIntake;
 import frc.robot.subsystems.Chassis;
+import frc.robot.subsystems.FrontClimber;
 
 
 /**
@@ -29,6 +31,8 @@ import frc.robot.subsystems.Chassis;
 public class Robot extends TimedRobot {
   public static Wrist wrist;
   public static Chassis chassis;
+  public static FrontClimber frontClimber;
+  public static BackClimber backClimber;
   public static  OI m_oi;
   Command m_autonomousCommand;
   public static BallIntake ballIntake;
@@ -46,6 +50,8 @@ public class Robot extends TimedRobot {
 
     // chooser.addOption("My Auto", new MyAutoCommand());
     chassis = new Chassis();
+    frontClimber = new FrontClimber();
+    backClimber = new BackClimber();
       //IMPORTANT: INITIALIZE OI AFTER SUBSYSTEMS
     m_oi = new OI();
 
