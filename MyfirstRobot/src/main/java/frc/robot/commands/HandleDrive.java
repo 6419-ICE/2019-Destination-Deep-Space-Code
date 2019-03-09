@@ -32,8 +32,13 @@ public class HandleDrive extends Command {
         double leftPower, rightPower;
         if (RobotMap.USING_YOKE) {
             Joystick joystick = Robot.m_oi.getJoystick(0);
-            double drive = Util.applyDeadband(-joystick.getRawAxis(1), 0.2),
-                    turn = Util.applyDeadband(joystick.getRawAxis(0), 0.2) + 0.2 * joystick.getRawAxis(2);
+            double driveInput = -joystick.getRawAxis(1);
+            double turnInput = joystick.getRawAxis(0);
+            double drive = Util.applyDeadband(Math.copySign(driveInput * driveInput, driveInput), 0.05),
+                    turn = Util.applyDeadband(Math.copySign(turnInput * turnInput, turnInput), 0.05) + 0.2 * joystick.getRawAxis(2);
+            if (drive < 0) {
+                turn *= -1;
+            }
             leftPower = drive + turn;
             rightPower = drive - turn;
             double maxAbs = Math.max(Math.abs(leftPower), Math.abs(rightPower));
@@ -41,10 +46,10 @@ public class HandleDrive extends Command {
                 leftPower /= maxAbs;
                 rightPower /= maxAbs;
             }
-            leftPower = Math.copySign(leftPower * leftPower, leftPower);
+            /*leftPower = Math.copySign(leftPower * leftPower, leftPower);
             rightPower = Math.copySign(rightPower * rightPower, rightPower);
             leftPower = Util.applyDeadband(leftPower, 0.1);
-            rightPower = Util.applyDeadband(rightPower, 0.1);
+            rightPower = Util.applyDeadband(rightPower, 0.1);*/
         } else {
             double left = -Robot.m_oi.getJoystick(0).getRawAxis(1);
             double right = -Robot.m_oi.getJoystick(1).getRawAxis(1);
