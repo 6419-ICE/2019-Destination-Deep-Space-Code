@@ -7,64 +7,75 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
+import frc.robot.Util;
 
-public class HandleDrive extends Command 
-{
-  public HandleDrive() 
-  {
-    requires(Robot.chassis);
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
-  }
+public class HandleDrive extends Command {
+    public HandleDrive() {
+        requires(Robot.chassis);
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+    }
 
-  // Called just before this Command runs the first time
-  @Override
-  protected void initialize() 
-  {
+    // Called just before this Command runs the first time
+    @Override
+    protected void initialize() {
+        Robot.chassis.setTurningPidEnabled(false);
+    }
 
-  }
+    // Called repeatedly when this Command is scheduled to run
+    @Override
+    protected void execute() {
+        double leftPower, rightPower;
+        if (RobotMap.USING_YOKE) {
+            Joystick joystick = Robot.m_oi.getJoystick(0);
+            double drive = Util.applyDeadband(-joystick.getRawAxis(1), 0.2),
+                    turn = Util.applyDeadband(joystick.getRawAxis(0), 0.2) + 0.2 * joystick.getRawAxis(2);
+            leftPower = drive + turn;
+            rightPower = drive - turn;
+            double maxAbs = Math.max(Math.abs(leftPower), Math.abs(rightPower));
+            if (maxAbs > 1) {
+                leftPower /= maxAbs;
+                rightPower /= maxAbs;
+            }
+            leftPower = Math.copySign(leftPower * leftPower, leftPower);
+            rightPower = Math.copySign(rightPower * rightPower, rightPower);
+            leftPower = Util.applyDeadband(leftPower, 0.1);
+            rightPower = Util.applyDeadband(rightPower, 0.1);
+        } else {
+            double left = -Robot.m_oi.getJoystick(0).getRawAxis(1);
+            double right = -Robot.m_oi.getJoystick(1).getRawAxis(1);
+            left = Util.constrain(left, -1, 1);
+            right = Util.constrain(right, -1, 1);
+            leftPower = Math.copySign(left * left, left);
+            rightPower = Math.copySign(right * right, right);
+        }
+        Robot.chassis.drive(leftPower, rightPower);
 
-  // Called repeatedly when this Command is scheduled to run
-  @Override
-  protected void execute()
-  {
-    double left = -Robot.m_oi.joystick1.getRawAxis(1);
-    double right = -Robot.m_oi.joystick2.getRawAxis(1);
-    // left = Math.min(Math.max(-1, left), 1);
-    // right = Math.min(Math.max(-1, right), 1);
-    left = Math.max(-1, left);
-    left = Math.min(1, left);
-    right = Math.max(-1, right);
-    right = Math.min(1, right);
-    double signLeft = left < 0 ? -1:1;
-    double signRight = right < 0 ? -1:1;
-    left = left*left*signLeft;
-    right = right*right*signRight;
-    Robot.chassis.drive(left, right);
-  
-  }
+        //System.out.println(String.format("Left power: %f Right Power %f", leftPower, rightPower));
+        //System.out.println(String.format("Left: %f Right: %f", Robot.chassis.flDrive.getAppliedOutput(), Robot.chassis.frDrive.getAppliedOutput()));
 
-  // Make this return true when this Command no longer needs to run execute()
-  @Override
-  protected boolean isFinished()
-  {
-    return false;
-  }
+    }
 
-  // Called once after isFinished returns true
-  @Override
-  protected void end()
-  {
+    // Make this return true when this Command no longer needs to run execute()
+    @Override
+    protected boolean isFinished() {
+        return false;
+    }
 
-  }
+    // Called once after isFinished returns true
+    @Override
+    protected void end() {
 
-  // Called when another command which requires one or more of the same
-  // subsystems is scheduled to run
-  @Override
-  protected void interrupted() 
-  {
-    end();
-  }
+    }
+
+    // Called when another command which requires one or more of the same
+    // subsystems is scheduled to run
+    @Override
+    protected void interrupted() {
+        end();
+    }
 }

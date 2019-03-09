@@ -1,5 +1,6 @@
 buildscript {
     dependencies {
+        classpath files("gradlerio/gson-2.8.5.jar")
         classpath files("gradlerio/Toolchain-2019.3.2.jar")
         classpath files("gradlerio/GradleRIO-2019.3.2.jar")
     }

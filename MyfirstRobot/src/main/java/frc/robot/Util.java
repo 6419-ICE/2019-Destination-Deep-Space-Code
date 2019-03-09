@@ -15,4 +15,25 @@ public class Util {
     {
         return value < max && value > min;
     }
+
+    public static double constrain(double value, double min, double max) {
+        if (value > max) {
+            return max;
+        }
+        if (value < min) {
+            return min;
+        }
+        return value;
+    }
+
+    public static double applyDeadband(double value, double deadband) {
+        return applyDeadband(value, deadband, 0);
+    }
+
+    public static double applyDeadband(double value, double deadband, double centeredAround) {
+        if (value < centeredAround + deadband && value > centeredAround - deadband) {
+            return centeredAround;
+        }
+        return value;
+    }
 }

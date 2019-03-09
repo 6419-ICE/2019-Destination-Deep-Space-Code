@@ -16,37 +16,42 @@ package frc.robot;
  */
 public class RobotMap {
 
-//motors
-public static int FRONT_CLIMBER = 0;
-public static int BACK_CLIMBER = 1;
+    public static boolean USING_YOKE = true;
 
-  //CAN devices
-public static int FRONT_LEFT_DRIVE = 0;
-public static int FRONT_RIGHT_DRIVE = 1;
-public static int BACK_LEFT_DRIVE = 2;
-public static int BACK_RIGHT_DRIVE = 3;
-//Sensors
-public static int BALL_INTAKE = 17;
-public static int BUMP_SWITCH = 0;
-public static final int LINE_SENSOR1 = 0;
-public static final int LINE_SENSOR2 = 1;
-public static final int LINE_SENSOR3 = 2;
+    //motors
+    public static int FRONT_CLIMBER = 0;
+    public static int BACK_CLIMBER = 1;
 
+    //CAN devices
+    public static int FRONT_LEFT_DRIVE = 1;
+    public static int FRONT_RIGHT_DRIVE = 2;
+    public static int BACK_LEFT_DRIVE = 3;
+    public static int BACK_RIGHT_DRIVE = 4;
+    public static int CLIMBER_DRIVER = 5;
 
-public static int FRONT_CLIMBER_BUMP = 3;
-public static int BACK_CLIMBER_BUMP = 4;
-public static int WRIST = 10;
-public static int WRIST_ENCODER = 1;
+    //Sensors
+    public static int BALL_INTAKE = 17;
+    public static int BUMP_SWITCH = 0;
+    public static final int LINE_SENSOR1 = 0;
+    public static final int LINE_SENSOR2 = 1;
+    public static final int LINE_SENSOR3 = 2;
 
 
+    public static int FRONT_CLIMBER_BUMP = 3;
+    public static int BACK_CLIMBER_BUMP = 4;
+    public static int WRIST = 10;
+    public static int WRIST_ENCODER = 1;
 
-  // For example to map the left and right motors, you could define the
-  // following variables to use with your drivetrain subsystem.
-  // public static int leftMotor = 1;
-  // public static int rightMotor = 2;
+    public static double CLIMBER_AUX_PID_COEF = 0.5;
 
-  // If you are using multiple modules, make sure to define both the port
-  // number and the module. For example you with a rangefinder:
-  // public static int rangefinderPort = 1;
-  // public static int rangefinderModule = 1;
+
+    // For example to map the left and right motors, you could define the
+    // following variables to use with your drivetrain subsystem.
+    // public static int leftMotor = 1;
+    // public static int rightMotor = 2;
+
+    // If you are using multiple modules, make sure to define both the port
+    // number and the module. For example you with a rangefinder:
+    // public static int rangefinderPort = 1;
+    // public static int rangefinderModule = 1;
 }

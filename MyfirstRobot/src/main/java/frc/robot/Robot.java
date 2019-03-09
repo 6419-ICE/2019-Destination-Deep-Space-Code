@@ -12,13 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.subsystems.BackClimber;
-
-import frc.robot.subsystems.Wrist;
-
-import frc.robot.subsystems.BallIntake;
-import frc.robot.subsystems.Chassis;
-import frc.robot.subsystems.FrontClimber;
+import frc.robot.subsystems.*;
 
 
 /**
@@ -31,12 +25,12 @@ import frc.robot.subsystems.FrontClimber;
 public class Robot extends TimedRobot {
   public static Wrist wrist;
   public static Chassis chassis;
-  public static FrontClimber frontClimber;
-  public static BackClimber backClimber;
+  public static Climber climber;
+  public static ClimberDriver climberDriver;
   public static  OI m_oi;
-  Command m_autonomousCommand;
+  private Command m_autonomousCommand;
   public static BallIntake ballIntake;
-  SendableChooser<Command> m_chooser = new SendableChooser<>();
+  private SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   /**
    * This function is run when the robot is first started up and should be
@@ -50,11 +44,13 @@ public class Robot extends TimedRobot {
 
     // chooser.addOption("My Auto", new MyAutoCommand());
     chassis = new Chassis();
-    frontClimber = new FrontClimber();
-    backClimber = new BackClimber();
-      //IMPORTANT: INITIALIZE OI AFTER SUBSYSTEMS
-    m_oi = new OI();
-
+    climber = new Climber();
+    climberDriver = new ClimberDriver();
+    if (RobotMap.USING_YOKE) {
+        m_oi = new OI(new YokeInputManager());
+    } else {
+        m_oi = new OI(new JoystickInputManager());
+    }
 
    // mChassis = new MecchanumChassis();
     m_chooser.setDefaultOption("Default Auto", null);
