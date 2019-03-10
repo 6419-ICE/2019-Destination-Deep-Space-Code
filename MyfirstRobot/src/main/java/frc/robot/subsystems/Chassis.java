@@ -14,12 +14,9 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
-import edu.wpi.first.wpilibj.PWMSpeedController;
-import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.Config;
 import frc.robot.DirectionEnum;
-import frc.robot.Robot;
-import frc.robot.RobotMap;
 import frc.robot.commands.HandleDrive;
 
 
@@ -40,18 +37,18 @@ public class Chassis extends Subsystem implements PIDOutput {
     public Chassis() {
         gyro = new ADIS16448_IMU();
 
-        flDrive = new CANSparkMax(RobotMap.FRONT_LEFT_DRIVE, MotorType.kBrushless);
-        frDrive = new CANSparkMax(RobotMap.FRONT_RIGHT_DRIVE, MotorType.kBrushless);
-        blDrive = new CANSparkMax(RobotMap.BACK_LEFT_DRIVE, MotorType.kBrushless);
-        brDrive = new CANSparkMax(RobotMap.BACK_RIGHT_DRIVE, MotorType.kBrushless);
+        flDrive = new CANSparkMax(Config.FRONT_LEFT_DRIVE, MotorType.kBrushless);
+        frDrive = new CANSparkMax(Config.FRONT_RIGHT_DRIVE, MotorType.kBrushless);
+        blDrive = new CANSparkMax(Config.BACK_LEFT_DRIVE, MotorType.kBrushless);
+        brDrive = new CANSparkMax(Config.BACK_RIGHT_DRIVE, MotorType.kBrushless);
         turnPid = new PIDController(0, 0, 0, gyro, this);
 
         //Line sensors
-        lineSensorLeft = new LineSensor(RobotMap.LINE_SENSOR1);
-        lineSensorCenter = new LineSensor(RobotMap.LINE_SENSOR2);
-        lineSensorRight = new LineSensor(RobotMap.LINE_SENSOR3);
+        lineSensorLeft = new LineSensor(Config.LINE_SENSOR1);
+        lineSensorCenter = new LineSensor(Config.LINE_SENSOR2);
+        lineSensorRight = new LineSensor(Config.LINE_SENSOR3);
 
-        bumpSwitch = new LimitSwitch(RobotMap.BUMP_SWITCH);
+        bumpSwitch = new LimitSwitch(Config.BUMP_SWITCH);
 
         setPid();
         // going straight.

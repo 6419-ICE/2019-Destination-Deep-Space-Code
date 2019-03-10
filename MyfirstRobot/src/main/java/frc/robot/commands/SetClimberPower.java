@@ -25,8 +25,8 @@ public class SetClimberPower extends Command {
 
     @Override
     protected void initialize() {
+        Robot.climber.enable();
         Robot.climber.set(mode, powah);
-        System.out.println(mode);
     }
 
     @Override

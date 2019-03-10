@@ -9,8 +9,8 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Config;
 import frc.robot.Robot;
-import frc.robot.RobotMap;
 import frc.robot.Util;
 
 public class HandleDrive extends Command {
@@ -30,15 +30,15 @@ public class HandleDrive extends Command {
     @Override
     protected void execute() {
         double leftPower, rightPower;
-        if (RobotMap.USING_YOKE) {
+        if (Config.USING_YOKE) {
             Joystick joystick = Robot.m_oi.getJoystick(0);
             double driveInput = -joystick.getRawAxis(1);
             double turnInput = joystick.getRawAxis(0);
             double drive = Util.applyDeadband(Math.copySign(driveInput * driveInput, driveInput), 0.05),
                     turn = Util.applyDeadband(Math.copySign(turnInput * turnInput, turnInput), 0.05) + 0.2 * joystick.getRawAxis(2);
-            if (drive < 0) {
+            /*if (drive < 0) {
                 turn *= -1;
-            }
+            }*/
             leftPower = drive + turn;
             rightPower = drive - turn;
             double maxAbs = Math.max(Math.abs(leftPower), Math.abs(rightPower));

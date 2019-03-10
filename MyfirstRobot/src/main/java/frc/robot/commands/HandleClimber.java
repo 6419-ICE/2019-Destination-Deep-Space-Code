@@ -9,10 +9,8 @@ Created 3/8/19 by christopher.johnson
 */
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.RobotMap;
 
 public class HandleClimber extends Command {
 
@@ -22,11 +20,12 @@ public class HandleClimber extends Command {
 
     @Override
     protected void initialize() {
-        Robot.climber.set(ControlMode.PercentOutput, 0);
+        Robot.climber.set(ControlMode.Velocity, 0);
     }
 
     @Override
     protected void execute() {
+        //Robot.climber.set(ControlMode.Velocity, 0);
     }
 
     @Override

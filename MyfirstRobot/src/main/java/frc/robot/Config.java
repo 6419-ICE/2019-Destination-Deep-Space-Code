@@ -9,30 +9,32 @@
 package frc.robot;
 
 /**
- * The RobotMap is a mapping from the ports sensors and actuators are wired into
+ * The Config is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking
  * the wiring easier and significantly reduces the number of magic numbers
  * floating around.
  */
-public class RobotMap {
+public class Config {
 
     public static boolean USING_YOKE = true;
 
     public static class Yoke {
         // yoke buttons
-        public static final int LEFT_TRIGGER = 0,
-                                RIGHT_TRIGGER = 1,
-                                RIGHT_HAND_ROCKER_LEFT = 2,
-                                RIGHT_HAND_ROCKER_RIGHT = 3,
-                                LEFT_TOGGLE_UP = 4,
-                                LEFT_TOGGLE_DOWN = 5,
-                                RIGHT_TOGGLE_UP = 6,
-                                RIGHT_TOGGLE_DOWN = 7,
-                                LEFT_HAND_TOP_BUTTON = 8,
-                                LEFT_HAND_BOTTOM_BUTTON = 9,
-                                LEFT_HAND_ROCKER_UP = 10,
-                                LEFT_HAND_ROCKER_DOWN = 11;
+        public static final int LEFT_TRIGGER = 1,
+                                RIGHT_TRIGGER = 2,
+                                RIGHT_HAND_ROCKER_LEFT = 3,
+                                RIGHT_HAND_ROCKER_RIGHT = 4,
+                                LEFT_TOGGLE_UP = 5,
+                                LEFT_TOGGLE_DOWN = 6,
+                                RIGHT_TOGGLE_UP = 7,
+                                RIGHT_TOGGLE_DOWN = 8,
+                                LEFT_HAND_TOP_BUTTON = 9,
+                                LEFT_HAND_BOTTOM_BUTTON = 10,
+                                LEFT_HAND_ROCKER_UP = 11,
+                                LEFT_HAND_ROCKER_DOWN = 12;
     }
+
+    public static final int CLIMB_SPEED = 1000;
 
     //motors
     public static int FRONT_CLIMBER = 0;

@@ -13,7 +13,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.Counter;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.RobotMap;
+import frc.robot.Config;
 import frc.robot.Util;
 import frc.robot.commands.WristDefaultCommand;
 
@@ -31,8 +31,8 @@ public class Wrist extends Subsystem {
   private int sp = 0;
   public Wrist()
   {
-    motor = new TalonSRX(RobotMap.WRIST);
-    motorcounter = new Counter(new DigitalInput(RobotMap.WRIST_ENCODER));
+    motor = new TalonSRX(Config.WRIST);
+    motorcounter = new Counter(new DigitalInput(Config.WRIST_ENCODER));
     
   }
   @Override

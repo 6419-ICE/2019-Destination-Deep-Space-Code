@@ -12,8 +12,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SendableBuilder;
-import frc.robot.RobotMap;
-import frc.robot.commands.HandleClimber;
+import frc.robot.Config;
 import frc.robot.commands.HandleClimberDriver;
 
 public class ClimberDriver extends Subsystem {
@@ -21,7 +20,7 @@ public class ClimberDriver extends Subsystem {
     private WPI_TalonSRX driver;
 
     public ClimberDriver() {
-        driver = new WPI_TalonSRX(RobotMap.CLIMBER_DRIVER);
+        driver = new WPI_TalonSRX(Config.CLIMBER_DRIVER);
     }
 
     @Override

@@ -12,7 +12,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.RobotMap;
+import frc.robot.Config;
 import frc.robot.commands.HandleBallIntake;
 
 /**
@@ -24,7 +24,7 @@ public class BallIntake extends Subsystem {
   // here. Call these from Commands.
 public BallIntake()
 {
-  intake = new TalonSRX(RobotMap.BALL_INTAKE);
+  intake = new TalonSRX(Config.BALL_INTAKE);
 }
 public void set(double input)
 {
