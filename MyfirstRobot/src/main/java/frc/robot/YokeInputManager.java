@@ -23,7 +23,7 @@ import frc.robot.Config.Yoke;
 
 public class YokeInputManager implements InputManager {
 
-    private Joystick yoke;
+    private Joystick yoke, weapons;
 
     @Override
     public void init() {
@@ -31,8 +31,9 @@ public class YokeInputManager implements InputManager {
         if (yoke.getAxisCount() < 5) {
             DriverStation.reportWarning("You do not have a yoke plugged in!", false);
         }
+        weapons = new Joystick(1);
 
-        JoystickButton raiseClimber = new JoystickButton(yoke, Yoke.LEFT_HAND_ROCKER_UP);
+        /*JoystickButton raiseClimber = new JoystickButton(yoke, Yoke.LEFT_HAND_ROCKER_UP);
         JoystickButton lowerClimber = new JoystickButton(yoke, Yoke.LEFT_HAND_ROCKER_DOWN);
         raiseClimber.whileActive(new SetClimberPower(ControlMode.Velocity, Config.CLIMB_SPEED));
         lowerClimber.whileActive(new SetClimberPower(ControlMode.Velocity, -Config.CLIMB_SPEED));
@@ -40,17 +41,17 @@ public class YokeInputManager implements InputManager {
         Trigger climberDriverForwards = new POVTrigger(yoke, 270, 90);
         Trigger climberDriverBackwards = new POVTrigger(yoke, 90, 270);
         climberDriverForwards.whileActive(new SetClimberDriverPower(ControlMode.PercentOutput, -0.5));
-        climberDriverBackwards.whileActive(new SetClimberDriverPower(ControlMode.PercentOutput, 0.5));
+        climberDriverBackwards.whileActive(new SetClimberDriverPower(ControlMode.PercentOutput, 0.5));*/
 
-        BetterButton raiseFront = new BetterButton(yoke, Yoke.LEFT_TOGGLE_UP);
-        BetterButton lowerFront = new BetterButton(yoke, Yoke.LEFT_TOGGLE_DOWN);
-        BetterButton raiseBack = new BetterButton(yoke, Yoke.RIGHT_TOGGLE_UP);
-        BetterButton lowerBack = new BetterButton(yoke, Yoke.RIGHT_TOGGLE_DOWN);
+        BetterButton raiseFront = new BetterButton(weapons, 3);
+        BetterButton lowerFront = new BetterButton(weapons, 5);
+        BetterButton raiseBack = new BetterButton(weapons, 4);
+        BetterButton lowerBack = new BetterButton(weapons, 7);
 
         Command raiseFrontCommand = new RaiseFront(ControlMode.Velocity, Config.CLIMB_SPEED),
                 lowerFrontCommand = new RaiseFront(ControlMode.Velocity, -Config.CLIMB_SPEED),
-                raiseBackCommand = new RaiseBack(ControlMode.Velocity, -Config.CLIMB_SPEED),
-                lowerBackCommand = new RaiseBack(ControlMode.Velocity, Config.CLIMB_SPEED);
+                raiseBackCommand = new RaiseBack(ControlMode.Velocity, Config.CLIMB_SPEED),
+                lowerBackCommand = new RaiseBack(ControlMode.Velocity, -Config.CLIMB_SPEED);
 
         raiseFront.whenActive(raiseFrontCommand);
         raiseFront.cancelWhenReleased(raiseFrontCommand);
@@ -65,9 +66,13 @@ public class YokeInputManager implements InputManager {
 
     @Override
     public Joystick getJoystick(int index) {
-        if (index != 0) {
-            throw new IllegalArgumentException("The only valid joystick index is 0");
+        if (!Util.withinRange(0, 1, index)) {
+            throw new IllegalArgumentException("The only valid joystick indexes are 0 and 1");
         }
-        return yoke;
+        if (index == 0) {
+            return yoke;
+        } else {
+            return weapons;
+        }
     }
 }

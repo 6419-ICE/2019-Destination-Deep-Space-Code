@@ -31,12 +31,12 @@ public class RaiseFront extends Command {
     protected void initialize() {
         Robot.climber.disable();
         Robot.climber.setFront(mode, power);
-
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
+        Robot.climber.setFront(mode, power);
     }
 
     // Make this return true when this Command no longer needs to run execute()

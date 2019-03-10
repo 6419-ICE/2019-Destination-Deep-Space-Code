@@ -10,6 +10,7 @@ Created 3/7/19 by christopher.johnson
 
 import com.ctre.phoenix.motorcontrol.*;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SendableBuilder;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -84,11 +85,21 @@ public class Climber extends PIDSubsystem {
     }
 
     public void setFront(ControlMode controlMode, double value) {
-        frontMotor.set(controlMode, value + ((controlMode == ControlMode.Velocity) ? pidOutput : 0));
+        // away from switch is negative velocity
+        if (frontSwitch.get() && (controlMode == ControlMode.PercentOutput || controlMode == ControlMode.Velocity)) {
+            frontMotor.set(controlMode, Math.min(0, value));
+        } else {
+            frontMotor.set(controlMode, value + ((controlMode == ControlMode.Velocity) ? pidOutput : 0));
+        }
     }
 
     public void setBack(ControlMode controlMode, double value) {
-        backMotor.set(controlMode, value);
+        // away from switch is negative velocity
+        if (backSwitch.get() && (controlMode == ControlMode.PercentOutput || controlMode == ControlMode.Velocity)) {
+            backMotor.set(controlMode, Math.min(0, value));
+        } else {
+            backMotor.set(controlMode, value);
+        }
     }
 
     public void set(ControlMode controlMode, double value) {
