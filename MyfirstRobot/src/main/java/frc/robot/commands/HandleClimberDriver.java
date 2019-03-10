@@ -27,7 +27,7 @@ public class HandleClimberDriver extends Command {
     @Override
     protected void execute() {
         if (Config.USING_YOKE) {
-            Robot.climberDriver.set(ControlMode.PercentOutput, -Robot.m_oi.getJoystick(1).getRawAxis(1));
+            Robot.climberDriver.set(ControlMode.PercentOutput, Robot.m_oi.getJoystick(1).getRawAxis(1));
         }
     }
 

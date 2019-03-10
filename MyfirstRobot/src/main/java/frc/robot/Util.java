@@ -11,8 +11,7 @@ package frc.robot;
  * Add your docs here.
  */
 public class Util {
-    public static boolean withinRange(double min, double max, double value)
-    {
+    public static boolean withinRange(double min, double max, double value) {
         return value < max && value > min;
     }
 

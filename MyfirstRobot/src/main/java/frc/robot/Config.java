@@ -34,7 +34,8 @@ public class Config {
                                 LEFT_HAND_ROCKER_DOWN = 12;
     }
 
-    public static final int CLIMB_SPEED = 1000;
+    public static final int CLIMB_SPEED = 1000,
+                            RETRACT_SPEED = 2000;
 
     //motors
     public static int FRONT_CLIMBER = 0;
@@ -47,20 +48,22 @@ public class Config {
     public static int BACK_RIGHT_DRIVE = 4;
     public static int CLIMBER_DRIVER = 5;
 
-    //Sensors
+    public static int INTAKE_TILT = 6;
     public static int BALL_INTAKE = 17;
+    public static int WRIST = 10;
+
+    //Sensors
+
     public static int BUMP_SWITCH = 0;
     public static final int LINE_SENSOR1 = 0;
     public static final int LINE_SENSOR2 = 1;
     public static final int LINE_SENSOR3 = 2;
 
-
     public static int FRONT_CLIMBER_BUMP = 3;
     public static int BACK_CLIMBER_BUMP = 4;
-    public static int WRIST = 10;
+    public static int TILT_TOP = 5,
+                      TILT_BOTTOM = 6;
     public static int WRIST_ENCODER = 1;
-
-    public static double CLIMBER_AUX_PID_COEF = 0.5;
 
 
     // For example to map the left and right motors, you could define the

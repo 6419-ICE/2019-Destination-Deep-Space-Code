@@ -7,6 +7,7 @@
 
 package frc.robot.commands;
 
+import com.revrobotics.CANSparkMax;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Config;
@@ -45,6 +46,12 @@ public class HandleDrive extends Command {
             if (maxAbs > 1) {
                 leftPower /= maxAbs;
                 rightPower /= maxAbs;
+            }
+            if (joystick.getRawButton(Config.Yoke.LEFT_TRIGGER)) {
+                leftPower = 0;
+            }
+            if (joystick.getRawButton(Config.Yoke.RIGHT_TRIGGER)) {
+                rightPower = 0;
             }
             /*leftPower = Math.copySign(leftPower * leftPower, leftPower);
             rightPower = Math.copySign(rightPower * rightPower, rightPower);

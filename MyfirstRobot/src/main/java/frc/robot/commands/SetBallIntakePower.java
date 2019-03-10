@@ -5,27 +5,31 @@ their codebase for the 2019 season.
 
 Copyright (c) 2019 ICE Robotics
 
-Created 3/8/19 by christopher.johnson
+Created 3/10/19 by christopher.johnson
 */
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class HandleClimber extends Command {
+public class SetBallIntakePower extends Command {
 
-    public HandleClimber() {
-        requires(Robot.climber);
+    private double powah;
+
+    public SetBallIntakePower(double power) {
+        requires(Robot.ballIntake);
+        powah = power;
     }
 
     @Override
     protected void initialize() {
-        Robot.climber.set(ControlMode.Velocity, 0);
+        DriverStation.reportWarning("Setting intake power", false);
+        Robot.ballIntake.setIntakePower(powah);
     }
 
     @Override
     protected void execute() {
-        //Robot.climber.setIntakePower(ControlMode.Velocity, 0);
+        Robot.ballIntake.setIntakePower(powah);
     }
 
     @Override

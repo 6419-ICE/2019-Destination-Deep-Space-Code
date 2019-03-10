@@ -11,15 +11,12 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.buttons.Trigger;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.commands.RaiseBack;
 import frc.robot.commands.RaiseFront;
-import frc.robot.commands.SetClimberDriverPower;
-import frc.robot.commands.SetClimberPower;
+import frc.robot.commands.SetBallIntakePower;
+import frc.robot.commands.SpinBallIntake;
 import frc.robot.triggers.BetterButton;
-import frc.robot.triggers.POVTrigger;
-import frc.robot.Config.Yoke;
 
 public class YokeInputManager implements InputManager {
 
@@ -33,25 +30,15 @@ public class YokeInputManager implements InputManager {
         }
         weapons = new Joystick(1);
 
-        /*JoystickButton raiseClimber = new JoystickButton(yoke, Yoke.LEFT_HAND_ROCKER_UP);
-        JoystickButton lowerClimber = new JoystickButton(yoke, Yoke.LEFT_HAND_ROCKER_DOWN);
-        raiseClimber.whileActive(new SetClimberPower(ControlMode.Velocity, Config.CLIMB_SPEED));
-        lowerClimber.whileActive(new SetClimberPower(ControlMode.Velocity, -Config.CLIMB_SPEED));
-
-        Trigger climberDriverForwards = new POVTrigger(yoke, 270, 90);
-        Trigger climberDriverBackwards = new POVTrigger(yoke, 90, 270);
-        climberDriverForwards.whileActive(new SetClimberDriverPower(ControlMode.PercentOutput, -0.5));
-        climberDriverBackwards.whileActive(new SetClimberDriverPower(ControlMode.PercentOutput, 0.5));*/
-
         BetterButton raiseFront = new BetterButton(weapons, 3);
         BetterButton lowerFront = new BetterButton(weapons, 5);
         BetterButton raiseBack = new BetterButton(weapons, 4);
-        BetterButton lowerBack = new BetterButton(weapons, 7);
+        BetterButton lowerBack = new BetterButton(weapons, 6);
 
-        Command raiseFrontCommand = new RaiseFront(ControlMode.Velocity, Config.CLIMB_SPEED),
-                lowerFrontCommand = new RaiseFront(ControlMode.Velocity, -Config.CLIMB_SPEED),
+        Command raiseFrontCommand = new RaiseFront(ControlMode.Velocity, -Config.CLIMB_SPEED),
+                lowerFrontCommand = new RaiseFront(ControlMode.PercentOutput, 1),
                 raiseBackCommand = new RaiseBack(ControlMode.Velocity, Config.CLIMB_SPEED),
-                lowerBackCommand = new RaiseBack(ControlMode.Velocity, -Config.CLIMB_SPEED);
+                lowerBackCommand = new RaiseBack(ControlMode.PercentOutput, -1);
 
         raiseFront.whenActive(raiseFrontCommand);
         raiseFront.cancelWhenReleased(raiseFrontCommand);
@@ -62,11 +49,17 @@ public class YokeInputManager implements InputManager {
         raiseBack.cancelWhenReleased(raiseBackCommand);
         lowerBack.whenActive(lowerBackCommand);
         lowerBack.cancelWhenReleased(lowerBackCommand);
+
+        JoystickButton load = new JoystickButton(weapons, 2),
+                       fire = new JoystickButton(weapons, 1);
+
+        load.whileActive(new SetBallIntakePower(-1));
+        fire.whileActive(new SetBallIntakePower(1));
     }
 
     @Override
     public Joystick getJoystick(int index) {
-        if (!Util.withinRange(0, 1, index)) {
+        if (index < 0 || index > 1) {
             throw new IllegalArgumentException("The only valid joystick indexes are 0 and 1");
         }
         if (index == 0) {

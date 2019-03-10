@@ -26,7 +26,7 @@ public class WristDefaultCommand extends Command {
   @Override
   protected void execute() {
     Robot.wrist.setPosition();
-//   Robot.wrist.set(Robot.m_oi.joystick1.getRawAxis(1));
+//   Robot.wrist.setIntakePower(Robot.m_oi.joystick1.getRawAxis(1));
    
     
   }

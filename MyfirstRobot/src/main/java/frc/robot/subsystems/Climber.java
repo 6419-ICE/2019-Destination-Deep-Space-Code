@@ -87,7 +87,7 @@ public class Climber extends PIDSubsystem {
     public void setFront(ControlMode controlMode, double value) {
         // away from switch is negative velocity
         if (frontSwitch.get() && (controlMode == ControlMode.PercentOutput || controlMode == ControlMode.Velocity)) {
-            frontMotor.set(controlMode, Math.min(0, value));
+            frontMotor.set(controlMode, Math.max(0, value));
         } else {
             frontMotor.set(controlMode, value + ((controlMode == ControlMode.Velocity) ? pidOutput : 0));
         }

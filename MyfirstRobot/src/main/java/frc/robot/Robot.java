@@ -30,6 +30,7 @@ public class Robot extends TimedRobot {
     public static Climber climber;
     public static ClimberDriver climberDriver;
     public static Limelight limelight;
+    public static IntakeTilter tilter;
     public static OI m_oi;
     private Command m_autonomousCommand;
     public static BallIntake ballIntake;
@@ -49,6 +50,7 @@ public class Robot extends TimedRobot {
         chassis = new Chassis();
         climber = new Climber();
         climberDriver = new ClimberDriver();
+        tilter = new IntakeTilter();
         limelight = new Limelight();
         if (Config.USING_YOKE) {
             m_oi = new OI(new YokeInputManager());
