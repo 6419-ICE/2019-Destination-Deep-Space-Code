@@ -1,8 +1,16 @@
+import org.apache.tools.ant.taskdefs.condition.Os
+
 buildscript {
     dependencies {
-        classpath files("gradlerio/gson-2.8.5.jar")
-        classpath files("gradlerio/Toolchain-2019.3.2.jar")
-        classpath files("gradlerio/GradleRIO-2019.3.2.jar")
+        if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+            classpath files("gradlerio\\gson-2.8.5.jar")
+            classpath files("gradlerio\\Toolchain-2019.3.2.jar")
+            classpath files("gradlerio\\GradleRIO-2019.3.2.jar")
+        } else {
+            classpath files("gradlerio/gson-2.8.5.jar")
+            classpath files("gradlerio/Toolchain-2019.3.2.jar")
+            classpath files("gradlerio/GradleRIO-2019.3.2.jar")
+        }
     }
 }
 
