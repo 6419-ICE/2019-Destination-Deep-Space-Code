@@ -2,24 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f2578efe-4939-49e1-a84a-d8c0e813b487" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyfirstRobot/src/main/java/frc/robot/commands/ConfigLimelight.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyfirstRobot/src/main/java/frc/robot/subsystems/Limelight.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyfirstRobot/src/main/java/frc/robot/triggers/BetterButton.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyfirstRobot/src/main/java/frc/robot/Robot.java" beforeDir="false" afterPath="$PROJECT_DIR$/MyfirstRobot/src/main/java/frc/robot/Robot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyfirstRobot/src/main/java/frc/robot/RobotMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/MyfirstRobot/src/main/java/frc/robot/Config.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyfirstRobot/src/main/java/frc/robot/YokeInputManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/MyfirstRobot/src/main/java/frc/robot/YokeInputManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyfirstRobot/src/main/java/frc/robot/commands/HandleClimber.java" beforeDir="false" afterPath="$PROJECT_DIR$/MyfirstRobot/src/main/java/frc/robot/commands/HandleClimber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyfirstRobot/src/main/java/frc/robot/commands/HandleDrive.java" beforeDir="false" afterPath="$PROJECT_DIR$/MyfirstRobot/src/main/java/frc/robot/commands/HandleDrive.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyfirstRobot/src/main/java/frc/robot/commands/RaiseBack.java" beforeDir="false" afterPath="$PROJECT_DIR$/MyfirstRobot/src/main/java/frc/robot/commands/RaiseBack.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyfirstRobot/src/main/java/frc/robot/commands/RaiseFront.java" beforeDir="false" afterPath="$PROJECT_DIR$/MyfirstRobot/src/main/java/frc/robot/commands/RaiseFront.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyfirstRobot/src/main/java/frc/robot/commands/SetClimberPower.java" beforeDir="false" afterPath="$PROJECT_DIR$/MyfirstRobot/src/main/java/frc/robot/commands/SetClimberPower.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyfirstRobot/src/main/java/frc/robot/subsystems/BallIntake.java" beforeDir="false" afterPath="$PROJECT_DIR$/MyfirstRobot/src/main/java/frc/robot/subsystems/BallIntake.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyfirstRobot/src/main/java/frc/robot/subsystems/Chassis.java" beforeDir="false" afterPath="$PROJECT_DIR$/MyfirstRobot/src/main/java/frc/robot/subsystems/Chassis.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyfirstRobot/src/main/java/frc/robot/subsystems/Climber.java" beforeDir="false" afterPath="$PROJECT_DIR$/MyfirstRobot/src/main/java/frc/robot/subsystems/Climber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyfirstRobot/src/main/java/frc/robot/subsystems/ClimberDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/MyfirstRobot/src/main/java/frc/robot/subsystems/ClimberDriver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyfirstRobot/src/main/java/frc/robot/subsystems/Wrist.java" beforeDir="false" afterPath="$PROJECT_DIR$/MyfirstRobot/src/main/java/frc/robot/subsystems/Wrist.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -156,7 +139,7 @@
         <counts>
           <entry key="class" value="4" />
           <entry key="gitignore" value="1" />
-          <entry key="gradle" value="9" />
+          <entry key="gradle" value="10" />
           <entry key="gradlew" value="4" />
           <entry key="java" value="75" />
           <entry key="java~master" value="1" />
@@ -167,7 +150,7 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CLASS" value="4" />
-          <entry key="Groovy" value="9" />
+          <entry key="Groovy" value="10" />
           <entry key="JAVA" value="75" />
           <entry key="JSON" value="2" />
           <entry key="PLAIN_TEXT" value="6" />
@@ -216,11 +199,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MyfirstRobot/src/main/java/frc/robot/commands/RaiseBack.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="159">
-              <caret line="42" column="20" selection-start-line="42" selection-start-column="20" selection-end-line="42" selection-end-column="20" />
+            <state relative-caret-position="144">
+              <caret line="40" column="13" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
               <folding>
                 <element signature="e#1525#1526#0" expanded="true" />
                 <element signature="e#1564#1565#0" expanded="true" />
@@ -261,8 +244,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MyfirstRobot/src/main/java/frc/robot/Config.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="188">
+            <state relative-caret-position="395">
               <caret line="36" column="47" selection-start-line="36" selection-start-column="47" selection-end-line="36" selection-end-column="47" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/MyfirstRobot/build.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="1" column="18" lean-forward="true" selection-start-line="1" selection-start-column="18" selection-end-line="1" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -270,11 +262,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MyfirstRobot/src/main/java/frc/robot/YokeInputManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="369">
-              <caret line="59" column="47" lean-forward="true" selection-start-line="59" selection-start-column="47" selection-end-line="59" selection-end-column="47" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="1">
+              <caret line="19" column="39" selection-start-line="19" selection-start-column="39" selection-end-line="19" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -293,15 +282,6 @@
                 <element signature="e#1315#1316#0" expanded="true" />
                 <element signature="e#1331#1332#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MyfirstRobot/src/main/java/frc/robot/commands/ConfigLimelight.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="34" column="5" lean-forward="true" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -1208,7 +1188,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///Users/christopher.johnson/IdeaProjects/2019-Destination-Deep-Space-Code/MyfirstRobot/src/main/java/frc/robot/RobotMap.java&#10;Robotm&#9;FILE&#9;file:///Users/christopher.johnson/IdeaProjects/2019-Destination-Deep-Space-Code/MyfirstRobot/src/main/java/frc/robot/RobotMap.java&#10;Cha&#9;FILE&#9;file:///Users/christopher.johnson/IdeaProjects/2019-Destination-Deep-Space-Code/MyfirstRobot/src/main/java/frc/robot/subsystems/Chassis.java&#10;ControlM&#9;PSI&#9;JAVA://com.ctre.phoenix.motorcontrol.ControlMode&#10;RemoteSe&#9;PSI&#9;JAVA://com.ctre.phoenix.motorcontrol.RemoteSensorSource&#10;FollowerT&#9;PSI&#9;JAVA://com.ctre.phoenix.motorcontrol.FollowerType&#10;RemoteLimit&#9;PSI&#9;JAVA://com.ctre.phoenix.motorcontrol.RemoteLimitSwitchSource" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552182009033" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552239602271" />
     <property name="external.system.task.project.file.to.start" value="$PROJECT_DIR$/MyfirstRobot" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
@@ -1430,7 +1410,7 @@
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1366" height="768" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27643505" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27643505" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -1439,7 +1419,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3288889" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2725926" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.2725926" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -1581,13 +1561,6 @@
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.revrobotics.frc/SparkMax-java/1.0.28/f5f7155cd7a379f626e36399de46da182898afac/SparkMax-java-1.0.28.jar!/com/revrobotics/CANSparkMax.class" />
     <entry file="file://$PROJECT_DIR$/MyfirstRobot/gradlew">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyfirstRobot/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="885">
-          <caret line="59" column="14" selection-start-line="59" selection-start-column="14" selection-end-line="59" selection-end-column="14" />
-        </state>
-      </provider>
     </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/edu.wpi.first.wpilibj/wpilibj-java/2019.3.1/833de3f0c566a45afc1cdc74f037040f7f362f0/wpilibj-java-2019.3.1-sources.jar!/edu/wpi/first/wpilibj/Spark.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1765,7 +1738,7 @@
     <entry file="file://$PROJECT_DIR$/MyfirstRobot/src/main/java/frc/robot/commands/ConfigLimelight.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="324">
-          <caret line="34" column="5" lean-forward="true" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
+          <caret line="34" column="5" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -1836,23 +1809,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MyfirstRobot/src/main/java/frc/robot/YokeInputManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="59" column="47" lean-forward="true" selection-start-line="59" selection-start-column="47" selection-end-line="59" selection-end-column="47" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyfirstRobot/src/main/java/frc/robot/Config.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="36" column="47" selection-start-line="36" selection-start-column="47" selection-end-line="36" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/MyfirstRobot/src/main/java/frc/robot/commands/HandleClimber.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="166">
@@ -1878,14 +1834,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MyfirstRobot/src/main/java/frc/robot/commands/RaiseBack.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="159">
-          <caret line="42" column="20" selection-start-line="42" selection-start-column="20" selection-end-line="42" selection-end-column="20" />
+        <state relative-caret-position="144">
+          <caret line="40" column="13" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
           <folding>
             <element signature="e#1525#1526#0" expanded="true" />
             <element signature="e#1564#1565#0" expanded="true" />
             <element signature="e#1749#1750#0" expanded="true" />
             <element signature="e#1770#1771#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyfirstRobot/src/main/java/frc/robot/YokeInputManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1">
+          <caret line="19" column="39" selection-start-line="19" selection-start-column="39" selection-end-line="19" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyfirstRobot/src/main/java/frc/robot/Config.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="395">
+          <caret line="36" column="47" selection-start-line="36" selection-start-column="47" selection-end-line="36" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyfirstRobot/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="18" lean-forward="true" selection-start-line="1" selection-start-column="18" selection-end-line="1" selection-end-column="18" />
         </state>
       </provider>
     </entry>
