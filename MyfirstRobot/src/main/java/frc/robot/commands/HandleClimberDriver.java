@@ -10,6 +10,7 @@ Created 3/9/19 by christopher.johnson
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Config;
 import frc.robot.Robot;
 
 public class HandleClimberDriver extends Command {
@@ -25,7 +26,9 @@ public class HandleClimberDriver extends Command {
 
     @Override
     protected void execute() {
-
+        if (Config.USING_YOKE) {
+            Robot.climberDriver.set(ControlMode.PercentOutput, -Robot.m_oi.getJoystick(1).getRawAxis(1));
+        }
     }
 
     @Override
