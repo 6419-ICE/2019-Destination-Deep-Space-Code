@@ -31,8 +31,8 @@ public class Wrist extends Subsystem {
   private int sp = 0;
   public Wrist()
   {
-    motor = new TalonSRX(Config.WRIST);
-    motorcounter = new Counter(new DigitalInput(Config.WRIST_ENCODER));
+    motor = new TalonSRX(Config.Wrist.Motors.WRIST_MOTOR);
+    motorcounter = new Counter(new DigitalInput(Config.Wrist.Sensors.WRIST_ENCODER));
     
   }
   @Override

@@ -37,18 +37,18 @@ public class Chassis extends Subsystem implements PIDOutput {
     public Chassis() {
         gyro = new ADIS16448_IMU();
 
-        flDrive = new CANSparkMax(Config.FRONT_LEFT_DRIVE, MotorType.kBrushless);
-        frDrive = new CANSparkMax(Config.FRONT_RIGHT_DRIVE, MotorType.kBrushless);
-        blDrive = new CANSparkMax(Config.BACK_LEFT_DRIVE, MotorType.kBrushless);
-        brDrive = new CANSparkMax(Config.BACK_RIGHT_DRIVE, MotorType.kBrushless);
+        flDrive = new CANSparkMax(Config.Chassis.Motors.FRONT_LEFT, MotorType.kBrushless);
+        frDrive = new CANSparkMax(Config.Chassis.Motors.FRONT_RIGHT, MotorType.kBrushless);
+        blDrive = new CANSparkMax(Config.Chassis.Motors.BACK_LEFT, MotorType.kBrushless);
+        brDrive = new CANSparkMax(Config.Chassis.Motors.BACK_RIGHT, MotorType.kBrushless);
         turnPid = new PIDController(0, 0, 0, gyro, this);
 
         //Line sensors
-        lineSensorLeft = new LineSensor(Config.LINE_SENSOR1);
-        lineSensorCenter = new LineSensor(Config.LINE_SENSOR2);
-        lineSensorRight = new LineSensor(Config.LINE_SENSOR3);
+        lineSensorLeft = new LineSensor(Config.Chassis.Sensors.LINE_SENSOR_0);
+        lineSensorCenter = new LineSensor(Config.Chassis.Sensors.LINE_SENSOR_1);
+        lineSensorRight = new LineSensor(Config.Chassis.Sensors.LINE_SENSOR_2);
 
-        bumpSwitch = new LimitSwitch(Config.BUMP_SWITCH);
+        bumpSwitch = new LimitSwitch(Config.Chassis.Sensors.BUMP_SWITCH);
 
         setPid();
         // going straight.

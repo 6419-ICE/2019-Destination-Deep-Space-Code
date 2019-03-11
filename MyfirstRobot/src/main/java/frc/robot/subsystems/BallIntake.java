@@ -28,7 +28,7 @@ public class BallIntake extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
     public BallIntake() {
-        intake = new WPI_TalonSRX(Config.BALL_INTAKE);
+        intake = new WPI_TalonSRX(Config.BallIntake.Motors.INTAKE_MOTOR);
     }
 
     public void setIntakePower(double input) {

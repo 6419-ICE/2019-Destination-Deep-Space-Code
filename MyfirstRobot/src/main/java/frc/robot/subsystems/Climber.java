@@ -29,10 +29,10 @@ public class Climber extends PIDSubsystem {
         setSetpoint(0);
         enable();
         setOutputRange(-100, 100);
-        frontMotor = new WPI_TalonSRX(Config.FRONT_CLIMBER);
-        backMotor = new WPI_TalonSRX(Config.BACK_CLIMBER);
-        frontSwitch = new LimitSwitch(Config.FRONT_CLIMBER_BUMP);
-        backSwitch = new LimitSwitch(Config.BACK_CLIMBER_BUMP);
+        frontMotor = new WPI_TalonSRX(Config.Climber.Motors.FRONT_CLIMBER);
+        backMotor = new WPI_TalonSRX(Config.Climber.Motors.BACK_CLIMBER);
+        frontSwitch = new LimitSwitch(Config.Climber.Sensors.FRONT_LIMIT);
+        backSwitch = new LimitSwitch(Config.Climber.Sensors.BACK_LIMIT);
 
         frontMotor.setNeutralMode(NeutralMode.Brake);
         backMotor.setNeutralMode(NeutralMode.Brake);

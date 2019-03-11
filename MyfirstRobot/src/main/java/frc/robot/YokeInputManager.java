@@ -11,12 +11,11 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.buttons.Trigger;
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.commands.RaiseBack;
-import frc.robot.commands.RaiseFront;
-import frc.robot.commands.SetBallIntakePower;
-import frc.robot.commands.SpinBallIntake;
+import frc.robot.commands.*;
 import frc.robot.triggers.BetterButton;
+import frc.robot.triggers.POVTrigger;
 
 public class YokeInputManager implements InputManager {
 
@@ -35,9 +34,9 @@ public class YokeInputManager implements InputManager {
         BetterButton raiseBack = new BetterButton(weapons, 4);
         BetterButton lowerBack = new BetterButton(weapons, 6);
 
-        Command raiseFrontCommand = new RaiseFront(ControlMode.Velocity, -Config.CLIMB_SPEED),
+        Command raiseFrontCommand = new RaiseFront(ControlMode.PercentOutput, -1),
                 lowerFrontCommand = new RaiseFront(ControlMode.PercentOutput, 1),
-                raiseBackCommand = new RaiseBack(ControlMode.Velocity, Config.CLIMB_SPEED),
+                raiseBackCommand = new RaiseBack(ControlMode.PercentOutput, 1),
                 lowerBackCommand = new RaiseBack(ControlMode.PercentOutput, -1);
 
         raiseFront.whenActive(raiseFrontCommand);
@@ -55,6 +54,12 @@ public class YokeInputManager implements InputManager {
 
         load.whileActive(new SetBallIntakePower(-1));
         fire.whileActive(new SetBallIntakePower(1));
+
+        Trigger defilade = new POVTrigger(weapons, 270, 90),
+                arm = new POVTrigger(weapons, 90, 270);
+
+        defilade.whileActive(new SetTilterPower(1));
+        arm.whileActive(new SetTilterPower(-1));
     }
 
     @Override

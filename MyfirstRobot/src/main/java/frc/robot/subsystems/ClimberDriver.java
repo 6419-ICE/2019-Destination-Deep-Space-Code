@@ -20,7 +20,7 @@ public class ClimberDriver extends Subsystem {
     private WPI_TalonSRX driver;
 
     public ClimberDriver() {
-        driver = new WPI_TalonSRX(Config.CLIMBER_DRIVER);
+        driver = new WPI_TalonSRX(Config.ClimberDriver.Motors.CLIMBER_DRIVER);
     }
 
     @Override

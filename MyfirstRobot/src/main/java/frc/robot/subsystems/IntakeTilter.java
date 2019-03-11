@@ -9,7 +9,6 @@ Created 3/10/19 by christopher.johnson
 */
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SendableBuilder;
@@ -22,9 +21,9 @@ public class IntakeTilter extends Subsystem {
     private LimitSwitch top, bottom;
 
     public IntakeTilter() {
-        tilt = new WPI_TalonSRX(Config.INTAKE_TILT);
-        top = new LimitSwitch(Config.TILT_TOP);
-        bottom = new LimitSwitch(Config.TILT_BOTTOM);
+        tilt = new WPI_TalonSRX(Config.IntakeTilter.Motors.TILTER);
+        top = new LimitSwitch(Config.IntakeTilter.Sensors.TILT_TOP);
+        bottom = new LimitSwitch(Config.IntakeTilter.Sensors.TILT_BOTTOM);
     }
 
     @Override
