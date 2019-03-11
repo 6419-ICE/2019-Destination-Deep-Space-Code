@@ -19,6 +19,7 @@ public class Config {
     public static boolean USING_YOKE = true;
 
     public static class Yoke {
+        @SuppressWarnings("unused")
         // yoke buttons
         public static final int LEFT_TRIGGER = 1,
                                 RIGHT_TRIGGER = 2,
@@ -34,10 +35,68 @@ public class Config {
                                 LEFT_HAND_ROCKER_DOWN = 12;
     }
 
-    public static final int CLIMB_SPEED = 1000,
-                            RETRACT_SPEED = 2000;
+    public static class Chassis {
+        public static class Motors {
+            public static final int FRONT_LEFT = 1,
+                                    FRONT_RIGHT = 2,
+                                    BACK_LEFT = 3,
+                                    BACK_RIGHT = 4;
+        }
 
-    //motors
+        public static class Sensors {
+            public static final int LINE_SENSOR_0 = 0,
+                                    LINE_SENSOR_1 = 1,
+                                    LINE_SENSOR_2 = 2,
+                                    BUMP_SWITCH = 0;
+        }
+    }
+
+    public static class Climber {
+        public static class Motors {
+            public static final int FRONT_CLIMBER = 0,
+                                    BACK_CLIMBER = 1;
+        }
+
+        public static class Sensors {
+            public static final int FRONT_LIMIT = 3,
+                                    BACK_LIMIT = 4;
+        }
+    }
+
+    public static class BallIntake {
+        public static class Motors {
+            public static final int INTAKE_MOTOR = 17;
+        }
+    }
+
+    public static class ClimberDriver {
+        public static class Motors {
+            public static final int CLIMBER_DRIVER = 5;
+        }
+    }
+
+    public static class IntakeTilter {
+        public static class Motors {
+            public static final int TILTER = 6;
+        }
+
+        public static class Sensors {
+            public static final int TILT_TOP = 5,
+                                    TILT_BOTTOM = 6;
+        }
+    }
+
+    public static class Wrist {
+        public static class Motors {
+            public static final int WRIST_MOTOR = 10;
+        }
+
+        public static class Sensors {
+            public static final int WRIST_ENCODER = 1;
+        }
+    }
+
+    /*//motors
     public static int FRONT_CLIMBER = 0;
     public static int BACK_CLIMBER = 1;
 
@@ -63,7 +122,7 @@ public class Config {
     public static int BACK_CLIMBER_BUMP = 4;
     public static int TILT_TOP = 5,
                       TILT_BOTTOM = 6;
-    public static int WRIST_ENCODER = 1;
+    public static int WRIST_ENCODER = 1;*/
 
 
     // For example to map the left and right motors, you could define the
