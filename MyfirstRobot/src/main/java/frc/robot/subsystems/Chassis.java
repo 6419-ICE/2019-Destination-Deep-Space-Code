@@ -12,6 +12,7 @@ import com.analog.adis16448.frc.ADIS16448_IMU;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -34,6 +35,8 @@ public class Chassis extends Subsystem implements PIDOutput {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
+    private double flStartTemp, frStartTemp, blStartTemp, brStartTemp;
+
     public Chassis() {
         gyro = new ADIS16448_IMU();
 
@@ -41,7 +44,16 @@ public class Chassis extends Subsystem implements PIDOutput {
         frDrive = new CANSparkMax(Config.Chassis.Motors.FRONT_RIGHT, MotorType.kBrushless);
         blDrive = new CANSparkMax(Config.Chassis.Motors.BACK_LEFT, MotorType.kBrushless);
         brDrive = new CANSparkMax(Config.Chassis.Motors.BACK_RIGHT, MotorType.kBrushless);
+        flDrive.setOpenLoopRampRate(0.3);
+        frDrive.setOpenLoopRampRate(0.3);
+        blDrive.setOpenLoopRampRate(0.3);
+        brDrive.setOpenLoopRampRate(0.3);
         turnPid = new PIDController(0, 0, 0, gyro, this);
+
+        flStartTemp = flDrive.getMotorTemperature();
+        frStartTemp = frDrive.getMotorTemperature();
+        blStartTemp = blDrive.getMotorTemperature();
+        brStartTemp = brDrive.getMotorTemperature();
 
         //Line sensors
         lineSensorLeft = new LineSensor(Config.Chassis.Sensors.LINE_SENSOR_0);
@@ -77,7 +89,6 @@ public class Chassis extends Subsystem implements PIDOutput {
         return gyro.getAngleX();
     }
 
-
     public void setPid() {
         turnPid.setInputRange(-179, 179);
         turnPid.setP(kP);
@@ -87,7 +98,6 @@ public class Chassis extends Subsystem implements PIDOutput {
         turnPid.setOutputRange(-1, 1);
         turnPid.setPercentTolerance(percentTolerance);
         turnPid.setContinuous(true);
-
     }
 
     public void startTurnPid(double setpoint) {
@@ -104,7 +114,6 @@ public class Chassis extends Subsystem implements PIDOutput {
         return bumpSwitch.getPressed();
     }
 
-
     /**
      * Drives the robot using raw power.
      */
@@ -113,13 +122,27 @@ public class Chassis extends Subsystem implements PIDOutput {
         frDrive.set(right);
         blDrive.set(left);
         brDrive.set(right);
-        //System.out.println(String.format("Left power: %f Right Power %f", left, right));
-        //System.out.println(String.format("Left: %f Right: %f", Robot.chassis.flDrive.getAppliedOutput(), Robot.chassis.frDrive.getAppliedOutput()));
     }
 
     @Override
     public void pidWrite(double output) {
         /*drive(output, -output);*/
+    }
+
+    @Override
+    public void periodic() {
+        if (flDrive.getMotorTemperature() > flStartTemp + 15) {
+            DriverStation.reportWarning(String.format("Front left drive motor is overheating! (%f degrees C)", flDrive.getMotorTemperature()), false);
+        }
+        if (frDrive.getMotorTemperature() > frStartTemp + 15) {
+            DriverStation.reportWarning(String.format("Front right drive motor is overheating! (%f degrees C)", frDrive.getMotorTemperature()), false);
+        }
+        if (blDrive.getMotorTemperature() > blStartTemp + 15) {
+            DriverStation.reportWarning(String.format("Back left drive motor is overheating! (%f degrees C)", blDrive.getMotorTemperature()), false);
+        }
+        if (brDrive.getMotorTemperature() > brStartTemp + 15) {
+            DriverStation.reportWarning(String.format("Back right drive motor is overheating! (%f degrees C)", brDrive.getMotorTemperature()), false);
+        }
     }
 
     public boolean getLeft() {
@@ -157,7 +180,6 @@ public class Chassis extends Subsystem implements PIDOutput {
             return DirectionEnum.LEFT;
 
         return DirectionEnum.UNKNOWN;
-
     }
 
 

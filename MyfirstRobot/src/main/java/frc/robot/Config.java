@@ -58,8 +58,10 @@ public class Config {
         }
 
         public static class Sensors {
-            public static final int FRONT_LIMIT = 3,
-                                    BACK_LIMIT = 4;
+            public static final int FRONT_BOTTOM_LIMIT = 2,
+                                    BACK_BOTTOM_LIMIT = 3,
+                                    FRONT_TOP_LIMIT = 6,
+                                    BACK_TOP_LIMIT = 7;
         }
     }
 
@@ -67,6 +69,18 @@ public class Config {
         public static class Motors {
             public static final int INTAKE_MOTOR = 17;
         }
+    }
+
+    public static class FondlerLift {
+        public static class Motors {
+            public static final int LIFT_MOTOR = 5;
+        }
+
+        public static class Sensors {
+            public static final int BOTTOM_SWITCH = 8;
+        }
+
+        public static final double TOP_POSITION = -1;
     }
 
     public static class ClimberDriver {
@@ -81,8 +95,8 @@ public class Config {
         }
 
         public static class Sensors {
-            public static final int TILT_TOP = 5,
-                                    TILT_BOTTOM = 6;
+            public static final int TILT_TOP = 4,
+                                    TILT_BOTTOM = 5;
         }
     }
 

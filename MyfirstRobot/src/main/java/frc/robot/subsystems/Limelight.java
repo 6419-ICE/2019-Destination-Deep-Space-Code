@@ -98,11 +98,13 @@ public class Limelight extends Subsystem {
         camMode = table.getEntry("camMode");
         tv = table.getEntry("tv");
         ta = table.getEntry("ta");
+        setCameraMode(CameraMode.DRIVER_CAMERA);
+        setLightMode(LightMode.DEFAULT);
     }
 
     @Override
     protected void initDefaultCommand() {
-        // nothing, since we have no command
+        // nothing, since we have no commands
     }
 
     public double getHorizontalAngle() {

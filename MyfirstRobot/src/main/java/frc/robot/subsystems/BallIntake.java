@@ -29,6 +29,7 @@ public class BallIntake extends Subsystem {
     // here. Call these from Commands.
     public BallIntake() {
         intake = new WPI_TalonSRX(Config.BallIntake.Motors.INTAKE_MOTOR);
+        intake.setInverted(false);
     }
 
     public void setIntakePower(double input) {

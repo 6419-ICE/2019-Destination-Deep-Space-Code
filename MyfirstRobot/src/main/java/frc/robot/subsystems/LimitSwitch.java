@@ -2,8 +2,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 
-public class LimitSwitch extends DigitalInput
-{
+public class LimitSwitch extends DigitalInput {
     /**
      * Create an instance of a LimitSwitch class. Creates a limit switch given a channel.
      *

@@ -8,12 +8,13 @@
 package frc.robot;
 
 import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commands.ConfigLimelight;
+import frc.robot.commands.AutoTensionLift;
 import frc.robot.subsystems.*;
 
 
@@ -31,6 +32,7 @@ public class Robot extends TimedRobot {
     public static ClimberDriver climberDriver;
     public static Limelight limelight;
     public static IntakeTilter tilter;
+    public static FondlerLift fondlerLift;
     public static OI m_oi;
     private Command m_autonomousCommand;
     public static BallIntake ballIntake;
@@ -52,22 +54,19 @@ public class Robot extends TimedRobot {
         climberDriver = new ClimberDriver();
         tilter = new IntakeTilter();
         limelight = new Limelight();
+        fondlerLift = new FondlerLift();
         if (Config.USING_YOKE) {
             m_oi = new OI(new YokeInputManager());
         } else {
             m_oi = new OI(new JoystickInputManager());
         }
 
-        // mChassis = new MecchanumChassis();
         m_chooser.setDefaultOption("Default Auto", null);
 
-        // chooser.addOption("My Auto", new MyAutoCommand());
         SmartDashboard.putData("Auto mode", m_chooser);
 
         //initialize camera server
         CameraServer.getInstance().startAutomaticCapture().setResolution(640, 480);
-
-
     }
 
     /**
@@ -80,6 +79,13 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void robotPeriodic() {
+        Joystick joystick = m_oi.getJoystick(0);
+        double driveInput = -joystick.getRawAxis(1);
+        double turnInput = joystick.getRawAxis(0);
+        double drive = Util.applyDeadband(Math.copySign(Math.pow(Math.abs(driveInput), 1.6), driveInput), 0.05),
+                turn = Util.applyDeadband(Math.copySign(Math.pow(Math.abs(turnInput), 1.6), turnInput), 0.05) + 0.2 * joystick.getRawAxis(2);
+        SmartDashboard.putNumber("Drive Input", drive);
+        SmartDashboard.putNumber("Turn Input", turn);
     }
 
     /**
@@ -142,6 +148,7 @@ public class Robot extends TimedRobot {
         if (m_autonomousCommand != null) {
             m_autonomousCommand.cancel();
         }
+        new AutoTensionLift().start();
     }
 
     /**

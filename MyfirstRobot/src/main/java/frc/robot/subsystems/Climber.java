@@ -10,7 +10,6 @@ Created 3/7/19 by christopher.johnson
 
 import com.ctre.phoenix.motorcontrol.*;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SendableBuilder;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -20,7 +19,7 @@ import frc.robot.commands.HandleClimber;
 public class Climber extends PIDSubsystem {
 
     private WPI_TalonSRX frontMotor, backMotor;
-    private LimitSwitch frontSwitch, backSwitch;
+    private LimitSwitch frontBottomSwitch, backBottomSwitch, frontTopSwitch, backTopSwitch;
 
     private double pidOutput;
 
@@ -31,8 +30,10 @@ public class Climber extends PIDSubsystem {
         setOutputRange(-100, 100);
         frontMotor = new WPI_TalonSRX(Config.Climber.Motors.FRONT_CLIMBER);
         backMotor = new WPI_TalonSRX(Config.Climber.Motors.BACK_CLIMBER);
-        frontSwitch = new LimitSwitch(Config.Climber.Sensors.FRONT_LIMIT);
-        backSwitch = new LimitSwitch(Config.Climber.Sensors.BACK_LIMIT);
+        frontBottomSwitch = new LimitSwitch(Config.Climber.Sensors.FRONT_BOTTOM_LIMIT);
+        backBottomSwitch = new LimitSwitch(Config.Climber.Sensors.BACK_BOTTOM_LIMIT);
+        frontTopSwitch = new LimitSwitch(Config.Climber.Sensors.FRONT_TOP_LIMIT);
+        backTopSwitch = new LimitSwitch(Config.Climber.Sensors.BACK_TOP_LIMIT);
 
         frontMotor.setNeutralMode(NeutralMode.Brake);
         backMotor.setNeutralMode(NeutralMode.Brake);
@@ -66,6 +67,9 @@ public class Climber extends PIDSubsystem {
 
         frontMotor.setSensorPhase(false);
 
+        frontMotor.setInverted(true);
+        backMotor.setInverted(true);
+
         frontMotor.config_kP(0, 1);
         frontMotor.config_kD(0, 1);
         backMotor.config_kP(0, 1);
@@ -86,17 +90,29 @@ public class Climber extends PIDSubsystem {
 
     public void setFront(ControlMode controlMode, double value) {
         // away from switch is negative velocity
-        if (frontSwitch.get() && (controlMode == ControlMode.PercentOutput || controlMode == ControlMode.Velocity)) {
-            frontMotor.set(controlMode, Math.max(0, value));
+        if (controlMode == ControlMode.PercentOutput || controlMode == ControlMode.Velocity) {
+            if (frontBottomSwitch.get()) {
+                frontMotor.set(controlMode, Math.min(0, value));
+            } else if (frontTopSwitch.get()) {
+                frontMotor.set(controlMode, Math.max(0, value));
+            } else {
+                frontMotor.set(controlMode, value + ((controlMode == ControlMode.Velocity) ? pidOutput : 0));
+            }
         } else {
-            frontMotor.set(controlMode, value + ((controlMode == ControlMode.Velocity) ? pidOutput : 0));
+            frontMotor.set(controlMode, value);
         }
     }
 
     public void setBack(ControlMode controlMode, double value) {
         // away from switch is negative velocity
-        if (backSwitch.get() && (controlMode == ControlMode.PercentOutput || controlMode == ControlMode.Velocity)) {
-            backMotor.set(controlMode, Math.min(0, value));
+        if (controlMode == ControlMode.PercentOutput || controlMode == ControlMode.Velocity) {
+            if (backBottomSwitch.get()) {
+                backMotor.set(controlMode, Math.min(0, value));
+            } else if (backTopSwitch.get()) {
+                backMotor.set(controlMode, Math.max(0, value));
+            } else {
+                backMotor.set(controlMode, value);
+            }
         } else {
             backMotor.set(controlMode, value);
         }
@@ -122,10 +138,18 @@ public class Climber extends PIDSubsystem {
         frontMotor.setSubsystem(getName());
         backMotor.setName("Back motor");
         backMotor.setSubsystem(getName());
-        frontSwitch.setName("Front switch");
-        frontSwitch.setSubsystem(getName());
-        backSwitch.setName("Back switch");
-        backSwitch.setSubsystem(getName());
+        frontBottomSwitch.setName("Front Bottom switch");
+        frontBottomSwitch.setSubsystem(getName());
+        backBottomSwitch.setName("Back Bottom switch");
+        backBottomSwitch.setSubsystem(getName());
+        frontTopSwitch.setName("Front Top switch");
+        frontTopSwitch.setSubsystem(getName());
+        backTopSwitch.setName("Back Top switch");
+        backTopSwitch.setSubsystem(getName());
+        builder.addBooleanProperty("Front Bottom", frontBottomSwitch::get, null);
+        builder.addBooleanProperty("Front Top", frontTopSwitch::get, null);
+        builder.addBooleanProperty("Back Bottom", backBottomSwitch::get, null);
+        builder.addBooleanProperty("Back Top", backTopSwitch::get, null);
         super.initSendable(builder);
     }
 

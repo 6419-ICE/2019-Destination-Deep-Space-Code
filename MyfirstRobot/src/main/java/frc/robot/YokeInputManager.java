@@ -34,8 +34,8 @@ public class YokeInputManager implements InputManager {
         BetterButton raiseBack = new BetterButton(weapons, 4);
         BetterButton lowerBack = new BetterButton(weapons, 6);
 
-        Command raiseFrontCommand = new RaiseFront(ControlMode.PercentOutput, -1),
-                lowerFrontCommand = new RaiseFront(ControlMode.PercentOutput, 1),
+        Command raiseFrontCommand = new RaiseFront(ControlMode.PercentOutput, 1),
+                lowerFrontCommand = new RaiseFront(ControlMode.PercentOutput, -1),
                 raiseBackCommand = new RaiseBack(ControlMode.PercentOutput, 1),
                 lowerBackCommand = new RaiseBack(ControlMode.PercentOutput, -1);
 
@@ -55,11 +55,19 @@ public class YokeInputManager implements InputManager {
         load.whileActive(new SetBallIntakePower(-1));
         fire.whileActive(new SetBallIntakePower(1));
 
-        Trigger defilade = new POVTrigger(weapons, 270, 90),
-                arm = new POVTrigger(weapons, 90, 270);
+        Trigger tiltUp = new POVTrigger(weapons, 270, 90),
+                tiltDown = new POVTrigger(weapons, 90, 270);
 
-        defilade.whileActive(new SetTilterPower(1));
-        arm.whileActive(new SetTilterPower(-1));
+        tiltUp.whileActive(new SetTilterPower(0.4));
+        tiltDown.whileActive(new SetTilterPower(-0.3));
+
+        JoystickButton raiseFondler = new JoystickButton(weapons, 9),
+                       lowerFondler = new JoystickButton(weapons, 10);
+
+        raiseFondler.whileActive(new SetFondlerLiftPower(0.5));
+        lowerFondler.whileActive(new SetFondlerLiftPower(-0.5));
+        raiseFondler.whenReleased(new AutoTensionLift());
+        lowerFondler.whenReleased(new AutoTensionLift());
     }
 
     @Override

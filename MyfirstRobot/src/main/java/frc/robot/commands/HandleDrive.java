@@ -35,8 +35,8 @@ public class HandleDrive extends Command {
             Joystick joystick = Robot.m_oi.getJoystick(0);
             double driveInput = -joystick.getRawAxis(1);
             double turnInput = joystick.getRawAxis(0);
-            double drive = Util.applyDeadband(Math.copySign(driveInput * driveInput, driveInput), 0.05),
-                    turn = Util.applyDeadband(Math.copySign(turnInput * turnInput, turnInput), 0.05) + 0.2 * joystick.getRawAxis(2);
+            double drive = Util.applyDeadband(Math.copySign(Math.pow(Math.abs(driveInput), 1.6), driveInput), 0.05),
+                    turn = Util.applyDeadband(Math.copySign(Math.pow(Math.abs(turnInput), 1.6), turnInput), 0.05) + 0.2 * joystick.getRawAxis(2);
             /*if (drive < 0) {
                 turn *= -1;
             }*/
